@@ -6,13 +6,14 @@ CREATE DATABASE "airbnb-clone";
 CREATE TABLE listings
 (
   id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-  name VARCHAR(60) NOT NULL,
-  streetAddress VARCHAR(95),
-  city VARCHAR(35),
-  state VARCHAR(15),
-  zipCode SMALLINT(5),
+  title VARCHAR(60) NOT NULL,
+  address TEXT,
   cost MONEY(8),
   capacity SMALLINT(2),
+  bedrooms SMALLINT(2),
+  beds SMALLINT(2),
+  baths SMALLINT(2),
+  description TEXT,
   amenities_id uuid REFERENCES listing_amenities (id),
   PRIMARY KEY (id)
 );
@@ -20,7 +21,8 @@ CREATE TABLE listings
 CREATE TABLE hosts
 (
   id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-  name VARCHAR(60),
+  first_name VARCHAR(60),
+  last_name VARCHAR(60),
   description VARCHAR(255),
   languages VARCHAR(40)
   ARRAY,
