@@ -7,56 +7,34 @@ CREATE TABLE listings
 (
   id uuid UNIQUE DEFAULT uuid_generate_v4 (),
   title VARCHAR(60) NOT NULL,
-  address TEXT,
+  description TEXT,
+  city VARCHAR(50),
+  state VARCHAR(15),
+  country VARCHAR(65),
   cost MONEY(8),
   capacity SMALLINT(2),
+  type VARCHAR(40),
   bedrooms SMALLINT(2),
   beds SMALLINT(2),
   baths SMALLINT(2),
-  description TEXT,
-  amenities_id uuid REFERENCES listing_amenities (id),
+  photoUrl TEXT,
+  hosts_id uuid REFERENCES hosts (id),
   PRIMARY KEY (id)
 );
 
 CREATE TABLE hosts
 (
   id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-  first_name VARCHAR(60),
-  last_name VARCHAR(60),
+  name VARCHAR(50),
   description VARCHAR(255),
-  languages VARCHAR(40)
-  ARRAY,
-  date_joined DATE,
-  response_rate INT4RANGE[0,100],
-  response_time TIME[0],
+  hostUrl TEXT,
+  dateJoined DATE,
+  responseRate INT4RANGE
+  [0,100],
+  responseTime TIME[0],
   PRIMARY KEY
   (id)
 );
-
-  CREATE TABLE photos
-  (
-    id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-    room VARCHAR(35),
-    description VARCHAR(255),
-    property_id uuid REFERENCES listings (id)
-      PRIMARY KEY (id)
-  );
-
-  CREATE TABLE amentities
-  (
-    id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-    name VARCHAR(40),
-    photo_url TEXT
-      PRIMARY KEY (id)
-  );
-
-  CREATE TABLE listing_amenities
-  (
-    id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-    listing_id uuid REFERENCES listings (id),
-    amenities_id uuid REFERENCES amenities (id)
-      PRIMARY KEY (id)
-  );
 
   CREATE TABLE reviews
   (
@@ -64,14 +42,14 @@ CREATE TABLE hosts
     text TEXT,
     date DATE,
     user_id uuid REFERENCES users (id),
-    listing_id uuid REFERENCES listings (id)
-      PRIMARY KEY (id)
+    listing_id uuid REFERENCES listings (id),
+    PRIMARY KEY (id)
   );
 
   CREATE TABLE users
   (
     id uuid UNIQUE DEFAULT uuid_generate_v4 (),
-    photo_url TEXT,
-    name VARCHAR(50)
-      PRIMARY KEY (id)
+    photoUrl TEXT,
+    name VARCHAR(50),
+    PRIMARY KEY (id)
   );
