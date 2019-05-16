@@ -1,7 +1,8 @@
 const faker = require('faker');
-const fs = require('fs');
-const path = require('path');
-const knex = require('knex');
+
+const randomBoundedInt = function randomBoundedInt(bound) {
+  return Math.floor(Math.random() * (bound + 1));
+};
 
 const randomIntInRange = function randomIntInRange(start, end) {
   return Math.floor(Math.floor() * (end - start + 1)) + start;
@@ -68,9 +69,31 @@ const generateOneHost = function generateOneHost() {
   }
 };
 
-const writeFakeData = function writeFakeData(fakeData, fileName) {
-  fs.writeFile(path.join(__dirname, fileName), fakeData, { encoding: 'utf8' }, (error) => {
-    if (error) console.error(error);
-    else console.log('Success!');
-  });
+const buildOneListing = function buildOneListing() {
+  let host = generateOneHost();
+  let listing = generateOneListing(host.id);
+  let numberOfReviews = randomBoundedInt(20);
+  let reviews = [];
+  let users = []
+  for (let i = 0; i < numberOfReviews; i++) {
+    let user = generateOneUser();
+    reviews.push(generateOneReview(user.id, listing.id));
+    users.push(user);
+  }
+  return {
+    listing,
+    host,
+    reviews,
+    users
+  }
+};
+
+const buildNListings = function buildNListings(n) {
+  let listings = [];
+  for (let i = 0; i < n; i++) {
+    listings.push(buildOneListing);
+  }
+  return listings;
 }
+
+module.exports.data = buildNlistings(100);
