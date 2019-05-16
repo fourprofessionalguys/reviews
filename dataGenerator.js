@@ -30,8 +30,8 @@ const randomBoundedPrice = function randomBoundedPrice() {
 };
 
 const randomListingTitle = function randomListingTitle() {
-  let starter = ['Immaculate Architect\'s', 'Let yourself be enlightened with this', 'Stunning', 'Charming', 'Bright', 'Take a magic stroll through the city from this', 'Modern, Chic', 'Admire Stunning Ocean Views from a', 'Unwind in a'];
-  let ender = ['Townhouse with terrace', 'Mediterranean style apartment near the beach', 'Studio apartment minutes from downtown', 'Parisian studio in the heart of city', 'Artist\'s studio', 'Stylish Loft', 'Penthouse with breathtaking views of the mountains'];
+  let starter = ['Vintage', 'Immaculate Architect\'s', 'Let yourself be enlightened with this', 'Stunning', 'Charming', 'Bright', 'Take a magic stroll through the city from this', 'Modern', 'Admire Stunning Ocean Views from a', 'Unwind in a'];
+  let ender = ['Townhouse with terrace', 'Mediterranean style apartment near the beach', 'Studio apartment minutes from downtown', 'Parisian studio in the heart of city', 'Artist\'s studio', 'Stylish Loft in Chic neighborhood', 'Penthouse with breathtaking views of the mountains'];
   return `${randomSelect(starter)} ${randomSelect(ender)}`;
 };
 
@@ -42,17 +42,20 @@ const randomListingDescription = function randomListingDescription() {
 };
 
 const randomHostDescription = function randomHostDescription() {
-
+  let starter = ['I am a professional Dancer.', 'I moved to the city to pursue a career in opera and other creative endevors.', 'I am originally from Canada, but went to university in the UK.', 'I work in advertising and marketing for an international firm.', 'I work as a lawyer for a small, private firm.', 'I am a recent university graduate working in Web Development.'];
+  let middle = ['I am passionate about design and architecture.', 'I love traveling and meeting people from all over the world.', 'I am addicted to travel and fine dinning.', 'My passion is putting together beautiful living spaces.'];
+  let ender = [' I am excited to make you love this place as much as I do.', '', ' Looking foward to meeting new people from all over the world.', '', ' Please don\'t hesitate to reach out with any questions regarding the property.', '', ''];
+  return `${randomSelect(starter)} ${randomSelect(middle)}${randomSelect(ender)}`;
 };
 
 const generateRandomReview = function generateRandomReview() {
-  let starter = ['OMG! ', 'JUST. WOW. ', '', '', 'What a blast! ', '', 'Good news everyone!', 'Wowie! ', 'Unfuhgetable! ', 'It was meh. ', 'It was nice. ', 'From the moment I saw the place I knew it would be a trainwreck. ', 'WARNING: not as advertised.'];
-  let hostAdjective = ['very helpful and pleasant', 'warm and friendly', 'kinda a jerk', 'charming', 'nice but couldn\'t stop talking about her cats', 'friendly', 'awkward'];
+  let starter = ['OMG! ', 'JUST. WOW. ', '', '', 'What a blast! ', 'My wife and I really enjoyed the location.', '', 'Good news everyone!', 'Very clean and beautiful decore! ', 'Great space.', 'Unfuhgetable! ', 'It was meh. ', 'It was nice. ', 'From the moment I saw the place I knew it would be a trainwreck. ', 'WARNING: not as advertised.'];
+  let hostAdjective = ['very helpful and pleasant', 'warm and friendly', 'kinda a jerk', 'charming', 'nice but couldn\'t stop talking about her cats', 'friendly'];
   let location = ['house', 'home', 'house', 'apartment', 'townhouse', 'house', 'apartment', 'villa', 'apartment'];
   let locationAdjective = ['just as advertised.', 'just what the doctor ordered.', 'breath taking.', 'cute and cozy.', 'lovely.'];
   let stayAdjective = ['interesting to say the least.', 'quite pleasent.', 'fun and relaxing.', 'well worth the price.'];
   let ending = ['In conclusion ', 'all in all ', '', '', '', ''];
-  let ending2 = [' would say things went very well.', ' had a great time.', ' absolutely loved my time there.', ' hated it.', ' would never go back.', 't was great.'];
+  let ending2 = [' would say things went very well.', ' had a great time.', ' absolutely loved my time there.', ' we had a wonderful stay.', ' hated it.', ' would never go back.', 't was great.'];
 
   return `${randomSelect(starter)}The host was ${randomSelect(hostAdjective)} and the ${randomSelect(location)} was ${randomSelect(locationAdjective)}
   The ${randomSelect(['two', 'three', 'four', 'five'])} days I spent there were ${randomSelect(stayAdjective)} ${randomSelect(ending)}I${randomSelect(ending2)}`
