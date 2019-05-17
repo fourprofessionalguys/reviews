@@ -6,13 +6,18 @@
   "dependencies": {
     "babel-loader": "^8.0.6",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.3.1",
     "eslint": "^5.16.0",
     "eslint-config-hackreactor": "github:hackreactor-labs/eslint-config-hackreactor",
     "express": "^4.17.0",
     "knex": "^0.16.5",
     "pg": "^7.11.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-thunk": "^2.3.0",
+    "thunk": "0.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

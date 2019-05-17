@@ -8,14 +8,14 @@ exports.seed = function (knex, Promise) {
     .then(() => {
       // Inserts seed entries
       return Promise.all(data.map(group => {
-        return knex('hosts').insert(group.host)
+        return knex('hosts').insert(group.host, 'id')
           .then(host => {
             group.listing.host_id = host[0];
-            return knex('listings').insert(group.listing)
+            return knex('listings').insert(group.listing, 'id')
           })
           .then(listing => {
             return Promise.all(group.reviews.map((review, i) => {
-              return knex('users').insert(group.users[i])
+              return knex('users').insert(group.users[i], 'id')
                 .then(user => {
                   review.user_id = user[0];
                   review.listing_id = listing[0];

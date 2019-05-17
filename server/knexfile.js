@@ -1,7 +1,7 @@
 module.exports = {
   development: {
     client: 'pg',
-    connection: 'postgres://localhost/airbnb_clone',
+    connection: 'postgres://student:student@localhost/airbnb_clone',
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
