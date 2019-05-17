@@ -61,7 +61,7 @@ const generateRandomReview = function generateRandomReview() {
   The ${randomSelect(['two', 'three', 'four', 'five'])} days I spent there were ${randomSelect(stayAdjective)} ${randomSelect(ending)}I${randomSelect(ending2)}`
 };
 
-const generateOneListing = function generateOneListing(host_id) {
+const generateOneListing = function generateOneListing() {
   return {
     title: randomListingTitle(),
     description: randomListingDescription(),
@@ -75,23 +75,19 @@ const generateOneListing = function generateOneListing(host_id) {
     beds: randomIntInRange(1, 12),
     baths: randomIntInRange(1, 10),
     photoUrl: faker.image.imageUrl(),
-    host_id: host_id
   };
 };
 
-const generateOneReview = function generateOneReview(user_id, listing_id) {
+const generateOneReview = function generateOneReview() {
   return {
     id: faker.random.uuid(),
     text: generateRandomReview(),
-    date: faker.date.past(),
-    user_id: user_id,
-    listing_id: listing_id
+    date: faker.date.past()
   }
 };
 
 const generateOneUser = function generateOneUser() {
   return {
-    id: faker.random.uuid(),
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
     photo_url: faker.image.imageUrl(),
   }
@@ -99,7 +95,6 @@ const generateOneUser = function generateOneUser() {
 
 const generateOneHost = function generateOneHost() {
   return {
-    id: faker.random.uuid(),
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
     description: randomHostDescription(),
     dateJoined: faker.date.past(),
@@ -112,13 +107,13 @@ const generateOneHost = function generateOneHost() {
 
 const buildOneListing = function buildOneListing() {
   let host = generateOneHost();
-  let listing = generateOneListing(host.id);
+  let listing = generateOneListing();
   let numberOfReviews = randomBoundedInt(20);
   let reviews = [];
   let users = []
   for (let i = 0; i < numberOfReviews; i++) {
     let user = generateOneUser();
-    reviews.push(generateOneReview(user.id, listing.id));
+    reviews.push(generateOneReview();
     users.push(user);
   }
   return {

@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS "airbnb-clone";
-CREATE DATABASE "airbnb-clone";
+DROP DATABASE IF EXISTS "airbnb_clone";
+CREATE DATABASE "airbnb_clone";
 
 \c "airbnb-clone";
 
@@ -50,6 +50,6 @@ CREATE TABLE hosts
   (
     id uuid UNIQUE DEFAULT uuid_generate_v4 (),
     photoUrl TEXT,
-    name VARCHAR(50),
+    name VARCHAR(60),
     PRIMARY KEY (id)
   );
