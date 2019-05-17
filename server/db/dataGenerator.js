@@ -26,7 +26,7 @@ const randomTimeRangeString = function randomTimeRangeString(frame) {
 };
 
 const randomBoundedPrice = function randomBoundedPrice() {
-  return `$${randomIntInRange(89, 500)}.00`;
+  return `${randomIntInRange(89, 500)}.00`;
 };
 
 const randomListingTitle = function randomListingTitle() {
@@ -80,7 +80,6 @@ const generateOneListing = function generateOneListing() {
 
 const generateOneReview = function generateOneReview() {
   return {
-    id: faker.random.uuid(),
     text: generateRandomReview(),
     date: faker.date.past()
   }
@@ -89,7 +88,7 @@ const generateOneReview = function generateOneReview() {
 const generateOneUser = function generateOneUser() {
   return {
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-    photo_url: faker.image.imageUrl(),
+    photoUrl: faker.image.imageUrl(),
   }
 };
 
@@ -98,9 +97,10 @@ const generateOneHost = function generateOneHost() {
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
     description: randomHostDescription(),
     dateJoined: faker.date.past(),
-    language: randomSelectionRange(['Italiano', 'Português', '日本語', 'Français', 'Deutsch', 'English', 'Dansk']),
+    // language: randomSelectionRange(['Italiano', 'Português', '日本語', 'Français', 'Deutsch', 'English', 'Dansk']),
     responseRate: randomPercentage(),
-    responseTime: `${randomIntInRange(1, 48)} hours`,
+    responseTime: new Date(),
+    // responseTime: `${randomIntInRange(1, 48)} hours`,
     hostUrl: faker.image.imageUrl()
   }
 };
@@ -113,7 +113,7 @@ const buildOneListing = function buildOneListing() {
   let users = []
   for (let i = 0; i < numberOfReviews; i++) {
     let user = generateOneUser();
-    reviews.push(generateOneReview();
+    reviews.push(generateOneReview());
     users.push(user);
   }
   return {
@@ -133,4 +133,4 @@ const buildNListings = function buildNListings(n) {
 }
 
 // module.exports.data = buildOneListing();
-module.exports.data = buildNListings(5);
+module.exports = buildNListings(5);

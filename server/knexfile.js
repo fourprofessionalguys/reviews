@@ -1,15 +1,14 @@
-// Update with your config settings.
-
 module.exports = {
-
   development: {
     client: 'pg',
-    connection: 'postgres://localhost:3003/airbnb_clone',
+    connection: 'postgres://localhost/airbnb_clone',
+    useNullAsDefault: true,
+    charset: 'utf8',
     migrations: {
       directory: __dirname + '/db/migrations'
     },
     seeds: {
-      directory: __dirname + '/db/seeds/development'
+      directory: __dirname + '/db/seeds/dev'
     }
   }
 

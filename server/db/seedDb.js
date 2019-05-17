@@ -1,5 +1,3 @@
-const knex = require('knex');
-const database = require('./database.js');
 const data = require('./dataGenerator.js');
 const fs = require('fs');
 const path = require('path');
