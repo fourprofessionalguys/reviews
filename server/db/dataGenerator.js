@@ -70,7 +70,7 @@ const generateOneListing = function generateOneListing() {
     country: faker.address.country(),
     cost: randomBoundedPrice(),
     capacity: randomBoundedInt(1, 22),
-    type: randomSelect(['villa', 'apartment', 'apartment', 'house', 'house', 'house', 'apartment']),
+    type: randomSelect(['villa', 'apartment', 'apartment', 'loft', 'house', 'loft', 'townhouse', 'townhouse', 'house', 'house', 'house', 'apartment']),
     bedrooms: randomIntInRange(1, 12),
     beds: randomIntInRange(1, 12),
     baths: randomIntInRange(1, 10),
@@ -97,10 +97,10 @@ const generateOneHost = function generateOneHost() {
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
     description: randomHostDescription(),
     dateJoined: faker.date.past(),
-    // language: randomSelectionRange(['Italiano', 'Português', '日本語', 'Français', 'Deutsch', 'English', 'Dansk']),
+    language: randomSelectionRange(['Italiano', 'Português', '日本語', 'Français', 'Deutsch', 'English', 'Dansk']),
     responseRate: randomPercentage(),
     responseTime: new Date(),
-    // responseTime: `${randomIntInRange(1, 48)} hours`,
+    responseTime: `${randomIntInRange(1, 48)} hours`,
     hostUrl: faker.image.imageUrl()
   }
 };
@@ -132,5 +132,4 @@ const buildNListings = function buildNListings(n) {
   return listings;
 }
 
-// module.exports.data = buildOneListing();
-module.exports = buildNListings(5);
+module.exports = buildNListings(100);

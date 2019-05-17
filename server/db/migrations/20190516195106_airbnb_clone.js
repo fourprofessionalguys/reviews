@@ -7,8 +7,9 @@ exports.up = function (knex, Promise) {
       table.string('description')
       table.text('hostUrl')
       table.date('dateJoined')
+      table.string('language')
       table.string('responseRate')
-      table.timestamp('responseTime')
+      table.string('responseTime')
     }),
     knex.schema.createTable('listings', table => {
       table.increments('id').primary()
