@@ -1,6 +1,10 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const database = require('./database.js');
+// const database = require('./database.js');
+// Setup Database
+const environment = process.env.NODE_ENV || 'development';
+const configuration = require('../knexfile')[environment];
+const database = require('knex')(configuration);
 
 // Setup
 const app = express();
@@ -12,10 +16,11 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 // Routes
-app.get('/reviews', (req, res) => {
+app.post('/reviews', (req, res) => {
+  let listing_id = req.body.listing_id;
   database.from('reviews')
     .select('text', 'date', 'user_id')
-    .where('listing_id', 1)
+    .where('listing_id', listing_id)
     .then(reviewsData => {
       database('reviews')
         .join('users', { 'users.id': 'reviews.user_id' })

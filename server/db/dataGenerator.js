@@ -87,7 +87,7 @@ const generateOneReview = function generateOneReview() {
 
 const generateOneUser = function generateOneUser() {
   return {
-    name: `${faker.name.firstName()} ${faker.name.lastName()}`,
+    name: faker.name.firstName(),
     photoUrl: faker.image.imageUrl(),
   }
 };

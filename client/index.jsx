@@ -20,16 +20,20 @@ class App extends React.Component {
 
   componentDidMount() {
     fetch('http://localhost:3003/reviews', {
-      method: 'GET'
+      method: 'POST',
+      headers: {
+        'Accepts': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ listing_id: this.props.listing_id })
     })
       .then(res => res.json())
       .then(data => {
-        console.log('data', data);
         this.setState({
           reviews: data
         });
       })
-      .catch(error => console.log('error with get request -->', error));
+      .catch(console.error);
   }
 
   render() {
@@ -45,4 +49,4 @@ class App extends React.Component {
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+ReactDOM.render(<App listing_id={1} />, document.getElementById('app'));

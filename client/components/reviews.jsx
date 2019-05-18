@@ -2,8 +2,8 @@ import React from 'react';
 import Review from './Review.jsx';
 
 const Reviews = ({ reviews, formatDate }) => {
-  let left3 = reviews.slice(0, 3);
-  let right3 = reviews.slice(3, 6);
+  let left3 = reviews.slice(0, 1).concat(reviews.slice(2, 3)).concat(reviews.slice(4, 5));
+  let right3 = reviews.slice(1, 2).concat(reviews.slice(3, 4)).concat(reviews.slice(5, 6));
   return (
     <div>
       <div className="row">

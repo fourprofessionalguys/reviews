@@ -19,12 +19,14 @@ body {
 .reviewColumn {
   display: flex;
   flex-direction: column;
-  align-content: center;
-  align-items: center;
+  align-items: left;
+  min-height: 10rem;
+  max-height: 40rem;
+  padding-bottom: 3rem;
 }
 
 .reviewBox {
-  padding: 24px 24px 24px 0;
+  padding: 18px 18px 18px 0;
   line-height: 1.43;
 }
 
