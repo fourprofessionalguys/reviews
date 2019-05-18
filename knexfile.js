@@ -5,11 +5,10 @@ module.exports = {
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
-      directory: __dirname + '/db/migrations'
+      directory: __dirname + '/server/db/migrations'
     },
     seeds: {
-      directory: __dirname + '/db/seeds/dev'
+      directory: __dirname + '/server/db/seeds/dev'
     }
   }
-
 };

@@ -31,7 +31,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server/server.js",
-    "react-dev": "webpack -d --watch"
+    "react-dev": "webpack -d --watch",
+    "seed": "knex migrate:rollback; knex migrate:latest; knex seed:run"
   },
   "repository": {
     "type": "git",

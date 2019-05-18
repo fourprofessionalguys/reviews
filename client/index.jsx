@@ -27,8 +27,12 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <Reviews reviews={this.state.reviews} />
+      <div className="pageContainer">
+        <hr />
+        <div className="pt-5">
+          <h1 className="reviewTitle mb-4">Reviews</h1>
+          <Reviews reviews={this.state.reviews} />
+        </div>
       </div>
     );
   }
