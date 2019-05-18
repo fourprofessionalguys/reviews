@@ -1,18 +1,18 @@
 import React from 'react';
 
-const Review = ({ review }) => {
+const Review = ({ review, formatDate }) => {
 
   return (
     <div className="reviewBox">
-      <div className="titleBox">
-        <div className="titleBox">
+      <div className="reviewBox">
+        <div className="viewBox">
           <div className="imageBox">
-            <img src="" alt="" />
+            <img src={review.photo} alt="" className="imageBox" />
           </div>
         </div>
-        <div className="titleBox">
+        <div className="viewBox">
           <span className="reviewName">{review.user}</span>
-          <div className="reviewDate">{new Date(review.date).toString()}</div>
+          <div className="reviewDate">{formatDate(review.date)}</div>
         </div>
       </div>
       <div className="reviewText">{review.text}</div>

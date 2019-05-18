@@ -7,7 +7,7 @@ body {
 
 .pageContainer {
   width: 1265px;
-  margin: 3rem auto 0 auto;
+  margin: 3rem auto 3rem auto;
 }
 
 .reviewTitle {
@@ -24,11 +24,11 @@ body {
 }
 
 .reviewBox {
-  padding: 24px;
+  padding: 24px 24px 24px 0;
   line-height: 1.43;
 }
 
-.titleBox {
+.viewBox {
   display: table-cell;
   vertical-align: middle;
   padding-bottom: 0.65rem;
@@ -37,6 +37,8 @@ body {
 .imageBox {
   height: 48px;
   width: 48px;
+  border-radius: 10rem;
+  margin-right: 1rem;
   display: block;
 }
 
@@ -59,7 +61,7 @@ body {
   font-weight: 300;
   line-height: 1.375rem;
   word-wrap: break-word;
-  padding: 0 2rem 0 2rem;
+  padding: 0 2rem 0 0;
 }
 
 .moreReviewsBtn {

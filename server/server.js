@@ -19,14 +19,15 @@ app.get('/reviews', (req, res) => {
     .then(reviewsData => {
       database('reviews')
         .join('users', { 'users.id': 'reviews.user_id' })
-        .select('name')
+        .select('name', 'photoUrl')
         .whereIn('reviews.user_id', reviewsData.map(review => review.user_id))
         .then(usersData => {
           let data = reviewsData.map((r, i) => {
             return {
               text: r.text,
               date: r.date,
-              user: usersData[i].name
+              user: usersData[i].name,
+              photo: usersData[i].photoUrl
             }
           });
           res.status(201).json(data);
