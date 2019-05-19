@@ -15,7 +15,7 @@ const Reviews = ({ reviews, formatDate }) => {
         </div>
       </div>
       <div className="mt-2">
-        <a className="text-left moreReviewsBtn">Read all {reviews.length} reviews</a>
+        <a id="moreReviewsBtn" className="text-left">Read all {reviews.length} reviews</a>
       </div>
     </div>
   );

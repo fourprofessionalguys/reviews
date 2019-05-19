@@ -14,10 +14,7 @@ module.exports = {
     rules: [
       {
         test: /.jsx?$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['@babel/preset-react', '@babel/preset-env']
-        }
+        loader: 'babel-loader'
       }
     ]
   }
