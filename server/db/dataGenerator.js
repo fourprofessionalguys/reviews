@@ -1,4 +1,6 @@
 const faker = require('faker');
+const axios = require('axios');
+const _ = require('underscore');
 
 const randomBoundedInt = function randomBoundedInt(bound) {
   return Math.floor(Math.random() * (bound)) + 1;
@@ -49,7 +51,7 @@ const randomHostDescription = function randomHostDescription() {
 };
 
 const generateRandomReview = function generateRandomReview() {
-  let starter = ['OMG! ', 'JUST. WOW. ', '', '', 'What a blast! ', 'My wife and I really enjoyed the location.', '', 'Good news everyone!', 'Very clean and beautiful decore! ', 'Great space.', 'Unfuhgetable! ', 'It was meh. ', 'It was nice. ', 'From the moment I saw the place I knew it would be a trainwreck. ', 'WARNING: not as advertised.'];
+  let starter = ['OMG! ', 'JUST. WOW. ', '', '', 'What a blast! ', 'My wife and I really enjoyed the location. ', '', 'Good news everyone! ', 'Very clean and beautiful decore! ', 'Great space. ', 'Unfuhgetable! ', 'It was meh. ', 'It was nice. ', 'From the moment I saw the place I knew it would be a trainwreck. ', 'WARNING: not as advertised. '];
   let hostAdjective = ['very helpful and pleasant', 'warm and friendly', 'kinda a jerk', 'charming', 'nice but couldn\'t stop talking about her cats', 'friendly'];
   let location = ['house', 'home', 'house', 'apartment', 'townhouse', 'house', 'apartment', 'villa', 'apartment'];
   let locationAdjective = ['just as advertised.', 'just what the doctor ordered.', 'breath taking.', 'cute and cozy.', 'lovely.'];
@@ -60,6 +62,31 @@ const generateRandomReview = function generateRandomReview() {
   return `${randomSelect(starter)}The host was ${randomSelect(hostAdjective)} and the ${randomSelect(location)} was ${randomSelect(locationAdjective)}
   The ${randomSelect(['two', 'three', 'four', 'five'])} days I spent there were ${randomSelect(stayAdjective)} ${randomSelect(ending)}I${randomSelect(ending2)}`
 };
+
+const fetchProfilePhotos = function fetchProfilePhotos(callback = () => { }) {
+  return axios({
+    url: 'https://api.unsplash.com/collections/138794/photos',
+    params: {
+      'page': 1,
+      'per_page': '100',
+      'client_id': '3a476d178c3f749d6d2202dc5a7a7b327aa4445b19110fc656b145bcf6aca5a9'
+    },
+    method: 'GET'
+  })
+    .then(res => res.data.map(item => `https://api.unsplash.com/photos/${item.id}?client_id=3a476d178c3f749d6d2202dc5a7a7b327aa4445b19110fc656b145bcf6aca5a9`))
+    .then(urls => {
+      return Promise.all(urls.map(url => {
+        return axios({
+          method: 'GET',
+          url: url
+        })
+          .then(data => {
+            return data.data.urls.small;
+          });
+      }))
+    });
+}
+
 
 const generateOneListing = function generateOneListing() {
   return {
@@ -85,14 +112,15 @@ const generateOneReview = function generateOneReview() {
   }
 };
 
-const generateOneUser = function generateOneUser() {
+const generateOneUser = function generateOneUser(url) {
   return {
     name: faker.name.firstName(),
-    photoUrl: faker.image.imageUrl(),
+    photoUrl: url,
   }
+
 };
 
-const generateOneHost = function generateOneHost() {
+const generateOneHost = function generateOneHost(url) {
   return {
     name: `${faker.name.firstName()} ${faker.name.lastName()}`,
     description: randomHostDescription(),
@@ -101,35 +129,32 @@ const generateOneHost = function generateOneHost() {
     responseRate: randomPercentage(),
     responseTime: new Date(),
     responseTime: `${randomIntInRange(1, 48)} hours`,
-    hostUrl: faker.image.imageUrl()
-  }
-};
-
-const buildOneListing = function buildOneListing() {
-  let host = generateOneHost();
-  let listing = generateOneListing();
-  let numberOfReviews = randomBoundedInt(20);
-  let reviews = [];
-  let users = []
-  for (let i = 0; i < numberOfReviews; i++) {
-    let user = generateOneUser();
-    reviews.push(generateOneReview());
-    users.push(user);
-  }
-  return {
-    listing,
-    host,
-    reviews,
-    users
+    hostUrl: url
   }
 };
 
 const buildNListings = function buildNListings(n) {
-  let listings = [];
-  for (let i = 0; i < n; i++) {
-    listings.push(buildOneListing());
-  }
-  return listings;
+  return fetchProfilePhotos()
+    .then(urls => {
+      return Promise.all(_.map(_.range(n), (k) => {
+        let host = generateOneHost(randomSelect(urls));
+        let listing = generateOneListing();
+        let numberOfReviews = randomBoundedInt(20);
+        let reviews = [];
+        let users = [];
+        for (let i = 0; i < numberOfReviews; i++) {
+          let user = generateOneUser(urls[i]);
+          reviews.push(generateOneReview());
+          users.push(user);
+        }
+        return {
+          listing,
+          host,
+          reviews,
+          users
+        }
+      }))
+    })
 }
 
-module.exports = buildNListings(100);
+module.exports = buildNListings(25);

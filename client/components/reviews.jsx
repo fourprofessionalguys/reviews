@@ -22,11 +22,11 @@ const Reviews = ({ reviews, formatDate }) => {
   let groups = [reviews.slice(0, 2), reviews.slice(2, 4), reviews.slice(4, 6)];
   return (
     <div>
-      {groups.map(group =>
+      {groups.map((group, k) =>
         <div className="row">
           {group.map((review, i) => (
-            <ReviewColumn className="col-6">
-              <Review review={review} formatDate={formatDate} key={i} />
+            <ReviewColumn key={i + k + 1} className="col-6">
+              <Review review={review} formatDate={formatDate} key={i + k + 1} />
             </ReviewColumn>
           ))}
         </div>
