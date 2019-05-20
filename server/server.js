@@ -1,3 +1,4 @@
+// Imports
 const express = require('express');
 const bodyParser = require('body-parser');
 
@@ -9,7 +10,6 @@ const database = require('knex')(configuration);
 // Configuration
 const app = express();
 const port = 3003;
-
 
 // Middleware
 app.use(express.static('public'));
@@ -40,7 +40,7 @@ app.post('/reviews', (req, res) => {
     });
 });
 
-// Server Component
+// Server Setup
 app.listen(port, () => {
   console.log(`Listening on localhost:${port}`);
 })
