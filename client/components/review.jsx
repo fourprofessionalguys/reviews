@@ -2,18 +2,18 @@ import React from 'react';
 import styled from 'styled-components';
 
 
-const reviewBox = styled.div`
-  padding: 18px 18px 18px 0;
+const ReviewBox = styled.div`
+  padding: 14px 18px 0 0;
   line-height: 1.43;
 `;
 
-const viewBox = styled.div`
+const ViewBox = styled.div`
   display: table-cell;
   vertical-align: middle;
   padding-bottom: 0.65rem;
 `;
 
-const imageBox = styled.img`
+const ImageBox = styled.img`
   height: 48px;
   width: 48px;
   border-radius: 10rem;
@@ -21,21 +21,21 @@ const imageBox = styled.img`
   display: block;
 `;
 
-const reviewName = styled.span`
+const ReviewName = styled.span`
   font-size: 16px;
   font-weight: 500;
   line-height: 1.375rem;
   margin: 0;
 `;
 
-const reviewDate = styled.div`
+const ReviewDate = styled.div`
   font-size: 14px;
   font-weight: 300;
   line-height: 1.2857142857142858rem;
   margin: 0;
 `;
 
-const reviewText = styled.div`
+const ReviewText = styled.div`
   font-size: 16px;
   font-weight: 300;
   line-height: 1.375rem;
@@ -44,30 +44,21 @@ const reviewText = styled.div`
 `;
 
 
-class Review extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <reviewBox>
-        <reviewBox>
-          <viewBox>
-            <imageBox>
-              <imageBox src={this.props.review.photo} alt=""></imageBox>
-            </imageBox>
-          </viewBox>
-          <viewBox>
-            <reviewName>{this.props.review.user}</reviewName>
-            <reviewDate>{this.props.formatDate(this.props.review.date)}</reviewDate>
-          </viewBox>
-        </reviewBox>
-        <reviewText>{this.props.review.text}</reviewText>
-      </reviewBox>
-    );
-  }
-
+const Review = ({ review, formatDate }) => {
+  return (
+    <ReviewBox>
+      <ReviewBox>
+        <ViewBox>
+          <ImageBox src={review.photo} alt=""></ImageBox>
+        </ViewBox>
+        <ViewBox>
+          <ReviewName>{review.user}</ReviewName>
+          <ReviewDate>{formatDate(review.date)}</ReviewDate>
+        </ViewBox>
+      </ReviewBox>
+      <ReviewText>{review.text}</ReviewText>
+    </ReviewBox>
+  );
 }
 
 export default Review;

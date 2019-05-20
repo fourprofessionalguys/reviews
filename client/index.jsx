@@ -5,15 +5,16 @@ import styled from 'styled-components';
 import Reviews from './components/reviews.jsx';
 
 
-const pageContainer = styled.div`
+const PageContainer = styled.div`
   width: 1265px;
   margin: 3rem auto 3rem auto;
 `;
 
-const reviewTitle = styled.h1`
+const ReviewTitle = styled.h1`
   font-weight: 700;
   font-size: 36px;
   line-height: 40px;
+  margin-bottom: 4rem;
 `;
 
 class App extends React.Component {
@@ -49,13 +50,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <pageContainer>
+      <PageContainer>
         <hr />
         <div className="pt-5">
-          <reviewTitle className="mb-4">Reviews</reviewTitle>
+          <ReviewTitle>Reviews</ReviewTitle>
           <Reviews reviews={this.state.reviews} formatDate={this.formatDate} />
         </div>
-      </pageContainer>
+      </PageContainer>
     );
   }
 }

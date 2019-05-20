@@ -2,50 +2,40 @@ import React from 'react';
 import styled from 'styled-components';
 import Review from './Review.jsx';
 
-const moreReviews = styled.a`
-  color: #914669;
+const MoreReviews = styled.a`
   font-size: 16px;
   font-weight: 500;
   -webkit-writing-mode: horizontal-tb;
   writing-mode: horizontal-tb;
 `;
 
-const reviewColumn = styled.div`
+const ReviewColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
   min-height: 10rem;
   max-height: 40rem;
-  padding-bottom: 3rem;
+  padding-bottom: 1.75rem;
 `;
 
-class Reviews extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    let reviews = this.props.reviews;
-    let left3 = reviews.slice(0, 1).concat(reviews.slice(2, 3)).concat(reviews.slice(4, 5));
-    let right3 = reviews.slice(1, 2).concat(reviews.slice(3, 4)).concat(reviews.slice(5, 6));
-    return (
-      <div>
+const Reviews = ({ reviews, formatDate }) => {
+  let groups = [reviews.slice(0, 2), reviews.slice(2, 4), reviews.slice(4, 6)];
+  return (
+    <div>
+      {groups.map(group =>
         <div className="row">
-          <reviewColumn className="col-6">
-            {left3.map((review, i) => <Review review={review} formatDate={this.props.formatDate} key={i} />)}
-          </reviewColumn>
-          <reviewColumn className="col-6">
-            {right3.map((review, i) => <Review review={review} formatDate={this.props.formatDate} key={i} />)}
-          </reviewColumn>
+          {group.map((review, i) => (
+            <ReviewColumn className="col-6">
+              <Review review={review} formatDate={formatDate} key={i} />
+            </ReviewColumn>
+          ))}
         </div>
-        <div className="mt-2">
-          <moreReviews className="text-left">Read all {reviews.length} reviews</moreReviews>
-        </div>
+      )}
+      <div className="mt-2">
+        <MoreReviews style={{ 'color': '#914669' }}>Read all {reviews.length} reviews</MoreReviews>
       </div>
-    );
-  }
+    </div >
+  );
 }
-
-
 
 export default Reviews;

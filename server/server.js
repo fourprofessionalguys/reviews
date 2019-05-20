@@ -1,14 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-// const database = require('./database.js');
+
 // Setup Database
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('../knexfile')[environment];
 const database = require('knex')(configuration);
 
-// Setup
+// Configuration
 const app = express();
-port = 3003;
+const port = 3003;
 
 
 // Middleware
