@@ -1,7 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import moment from 'moment';
+import styled from 'styled-components';
 import Reviews from './components/reviews.jsx';
+
+
+const pageContainer = styled.div`
+  width: 1265px;
+  margin: 3rem auto 3rem auto;
+`;
+
+const reviewTitle = styled.h1`
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+`;
 
 class App extends React.Component {
   constructor(props) {
@@ -14,8 +27,6 @@ class App extends React.Component {
 
   formatDate(date) {
     return String(moment(new Date(date)).fromNow());
-
-
   }
 
   componentDidMount() {
@@ -38,13 +49,13 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="pageContainer">
+      <pageContainer>
         <hr />
         <div className="pt-5">
-          <h1 className="reviewTitle mb-4">Reviews</h1>
+          <reviewTitle className="mb-4">Reviews</reviewTitle>
           <Reviews reviews={this.state.reviews} formatDate={this.formatDate} />
         </div>
-      </div>
+      </pageContainer>
     );
   }
 }
