@@ -1,6 +1,7 @@
 const faker = require('faker');
 const axios = require('axios');
 const _ = require('underscore');
+const UNSPLASH_API_KEY = require('../unsplashApiKey.js');
 
 const randomBoundedInt = function randomBoundedInt(bound) {
   return Math.floor(Math.random() * (bound)) + 1;
@@ -69,11 +70,11 @@ const fetchProfilePhotos = function fetchProfilePhotos(callback = () => { }) {
     params: {
       'page': 1,
       'per_page': '100',
-      'client_id': '3a476d178c3f749d6d2202dc5a7a7b327aa4445b19110fc656b145bcf6aca5a9'
+      'client_id': UNSPLASH_API_KEY
     },
     method: 'GET'
   })
-    .then(res => res.data.map(item => `https://api.unsplash.com/photos/${item.id}?client_id=3a476d178c3f749d6d2202dc5a7a7b327aa4445b19110fc656b145bcf6aca5a9`))
+    .then(res => res.data.map(item => `https://api.unsplash.com/photos/${item.id}?client_id=${UNSPLASH_API_KEY}`))
     .then(urls => {
       return Promise.all(urls.map(url => {
         return axios({

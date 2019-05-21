@@ -34,7 +34,6 @@
     "jest": "^24.8.0",
     "jest-dom": "^3.2.2",
     "jest-enzyme": "^7.0.2",
-    "random-profile-generator": "^2.3.0",
     "react-test-renderer": "^16.8.6",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2"
