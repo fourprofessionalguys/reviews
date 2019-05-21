@@ -2,10 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-// Setup Database
-const environment = process.env.NODE_ENV || 'development';
-const configuration = require('../knexfile')[environment];
-const database = require('knex')(configuration);
+const database = require('./db/dbConfig.js')
 
 // Configuration
 const app = express();
