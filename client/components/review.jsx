@@ -13,12 +13,24 @@ const ViewBox = styled.div`
   padding-bottom: 0.65rem;
 `;
 
-const ImageBox = styled.img`
+const ImageBox = styled.div`
+  position: relative;
   height: 48px;
   width: 48px;
   border-radius: 10rem;
   margin-right: 1rem;
   display: block;
+`;
+
+const CustomImage = styled.img`
+  height: 48px;
+  width: 48px;
+  display: block;
+  vertical-align: middle;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
 `;
 
 const ReviewName = styled.span`
@@ -49,7 +61,9 @@ const Review = ({ review, formatDate }) => {
     <ReviewBox>
       <ReviewBox>
         <ViewBox>
-          <ImageBox src={review.photo} alt=""></ImageBox>
+          <ImageBox>
+            <CustomImage src={review.photo} alt=""></CustomImage>
+          </ImageBox>
         </ViewBox>
         <ViewBox>
           <ReviewName>{review.user}</ReviewName>
