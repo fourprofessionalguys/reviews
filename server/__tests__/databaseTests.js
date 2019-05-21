@@ -118,10 +118,7 @@ describe('Test Validity of Database Contents', () => {
     test('test if "photoUrl" of "users" is a valid url', (done) => {
       database('users').select('photoUrl').where({ 'id': 1 })
         .then(data => {
-          axios({
-            url: data[0].photoUrl,
-            method: 'GET'
-          })
+          axios.get(data[0].photoUrl)
             .then(res => {
               expect((/20[0-9]{1}/).test(res.status)).toBe(true);
               done();
@@ -134,10 +131,7 @@ describe('Test Validity of Database Contents', () => {
     test('test if "hostUrl" is a valid link in "hosts" table', (done) => {
       database('hosts').select('hostUrl').where({ 'id': 1 })
         .then(data => {
-          axios({
-            url: data[0].hostUrl,
-            method: 'GET'
-          })
+          axios.get(data[0].hostUrl)
             .then(res => {
               expect((/20[0-9]{1}/).test(res.status)).toBe(true);
               done();
@@ -149,20 +143,12 @@ describe('Test Validity of Database Contents', () => {
     test('test if "photoUrl" is a valid link in "listings" table', (done) => {
       database('listings').select('photoUrl').where({ 'id': 1 })
         .then(data => {
-          console.log('data------------', data[0].photoUrl)
-          // axios({
-          //   url: data[0].photoUrl,
-          //   method: 'GET',
-          //   mode: 'cors',
-          //   headers: {
-          //     'Access-Control-Allow-Origin': '*'
-          //   }
-          // })
-          //   .then(res => {
-          //     expect((/20[0-9]{1}/).test(res.status)).toBe(true);
-          //     done();
-          //   })
-          //   .catch(e => console.error('11', e));
+          axios.get(data[0].photoUrl)
+            .then(res => {
+              expect((/20[0-9]{1}/).test(res.status)).toBe(true);
+              done();
+            })
+            .catch(e => console.error('11', e));
         });
     });
   });
