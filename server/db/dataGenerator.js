@@ -64,9 +64,12 @@ const generateRandomReview = function generateRandomReview() {
   The ${randomSelect(['two', 'three', 'four', 'five'])} days I spent there were ${randomSelect(stayAdjective)} ${randomSelect(ending)}I${randomSelect(ending2)}`
 };
 
-const fetchProfilePhotos = function fetchProfilePhotos(callback = () => { }) {
+const HOUSES_COLLECTION = 3488741;
+const PEOPLE_COLLECTION = 138794;
+
+const fetchPhotos = function fetchPhotos(collectionId) {
   return axios({
-    url: 'https://api.unsplash.com/collections/138794/photos',
+    url: `https://api.unsplash.com/collections/${collectionId}/photos`,
     params: {
       'page': 1,
       'per_page': '100',
@@ -135,7 +138,7 @@ const generateOneHost = function generateOneHost(url) {
 };
 
 const buildNListings = function buildNListings(n) {
-  return fetchProfilePhotos()
+  return fetchPhotos(PEOPLE_COLLECTION)
     .then(urls => {
       return Promise.all(_.map(_.range(n), (k) => {
         let host = generateOneHost(randomSelect(urls));
@@ -158,4 +161,4 @@ const buildNListings = function buildNListings(n) {
     })
 }
 
-module.exports = buildNListings(25);
+module.exports = buildNListings(100);

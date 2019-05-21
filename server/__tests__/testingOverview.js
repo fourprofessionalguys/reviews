@@ -1,6 +1,3 @@
-const jest = require('jest');
-const database = require('../server/db/dbConfig.js');
-
 describe('Test Validity of Database Contents', () => {
   test.todo('test if all tables exist')
   test.todo('check column names of each table')
