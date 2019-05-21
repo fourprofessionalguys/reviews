@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 const ReviewsHeader = styled.h1`
   font-weight: 700;
-  font-size: 36px;
+  font-size: 24px;
   line-height: 40px;
-  margin-bottom: 4rem;
+  margin-bottom: 1rem;
 `;
 
 const ImageBox = styled.div`
@@ -58,7 +58,7 @@ const ReviewText = styled.div`
   font-weight: 300;
   line-height: 1.375rem;
   word-wrap: break-word;
-  padding: 0 2rem 0 0;
+  padding: 0 2rem 0.5rem 0;
 `;
 
 const ReviewsModalBody = ({ reviews, formatDate }) => {
@@ -66,7 +66,7 @@ const ReviewsModalBody = ({ reviews, formatDate }) => {
     <div>
       <ReviewsHeader>{reviews.length} Reviews</ReviewsHeader>
       {reviews.map((review, i) =>
-        <div>
+        <div key={i}>
           <ReviewBox>
             <ViewBox>
               <ImageBox>

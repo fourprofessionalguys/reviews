@@ -2,5 +2,9 @@
   "presets": [
     "@babel/preset-react",
     "@babel/preset-env"
+  ],
+  "plugins": [
+    "@quickbaseoss/babel-plugin-styled-components-css-namespace",
+    "styled-components"
   ]
 }

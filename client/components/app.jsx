@@ -1,8 +1,28 @@
 import React from 'react';
 import moment from 'moment';
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 import Reviews from './reviews.jsx';
 
+const GlobalStyle = createGlobalStyle`
+  body {
+    font-family: 'Roboto', Helvetica Neue, sans-serif;
+    font-size: 14px;
+    color: #484848;
+    line-height: 1.43;
+  }
+  `;
+
+const Modal = styled.div`
+  display: ${props => props.showModal ? "table" : "none"};
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: white;
+  opacity: 0.7;
+  z-index: 3;
+  margin-top: -3rem;
+  padding: 0;
+`;
 
 const PageContainer = styled.div`
   width: 1265px;
@@ -21,12 +41,25 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      reviews: []
+      reviews: [],
+      showModal: false
     };
+
+    this.handleShow = this.handleShow.bind(this);
   }
+
+
+  handleShow() {
+    this.setState({ showModal: !this.state.showModal });
+  }
+
 
   formatDate(date) {
     return String(moment(new Date(date)).fromNow());
+  }
+
+  sortByDate(reviews) {
+    return reviews.sort((a, b) => new Date(b.date) - new Date(a.date));
   }
 
   componentDidMount() {
@@ -49,13 +82,17 @@ class App extends React.Component {
 
   render() {
     return (
-      <PageContainer>
-        <hr />
-        <div className="pt-5">
-          <ReviewTitle>Reviews</ReviewTitle>
-          <Reviews reviews={this.state.reviews} formatDate={this.formatDate} />
-        </div>
-      </PageContainer>
+      <div>
+        <GlobalStyle />
+        <Modal showModal={this.state.showModal} onClick={this.handleShow} ></Modal>
+        <PageContainer>
+          <hr />
+          <div className="pt-5">
+            <ReviewTitle>Reviews</ReviewTitle>
+            <Reviews showModal={this.state.showModal} handleShow={this.handleShow} reviews={this.sortByDate(this.state.reviews)} formatDate={this.formatDate} />
+          </div>
+        </PageContainer>
+      </div>
     );
   }
 }
