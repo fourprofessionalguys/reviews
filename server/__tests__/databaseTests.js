@@ -113,43 +113,43 @@ describe('Test Validity of Database Contents', () => {
 
 
 
-  describe('test if all table urls are valid:', () => {
+  // describe('test if all table urls are valid:', () => {
 
-    test('test if "photoUrl" of "users" is a valid url', (done) => {
-      database('users').select('photoUrl').where({ 'id': 1 })
-        .then(data => {
-          axios.get(data[0].photoUrl)
-            .then(res => {
-              expect((/20[0-9]{1}/).test(res.status)).toBe(true);
-              done();
-            })
-            .catch(e => console.error('9', e));
-        });
-    });
+  //   test('test if "photoUrl" of "users" is a valid url', (done) => {
+  //     database('users').select('photoUrl').where({ 'id': 1 })
+  //       .then(data => {
+  //         axios.get(data[0].photoUrl)
+  //           .then(res => {
+  //             expect((/20[0-9]{1}/).test(res.status)).toBe(true);
+  //             done();
+  //           })
+  //           .catch(e => console.error('9', e));
+  //       });
+  //   });
 
 
-    test('test if "hostUrl" is a valid link in "hosts" table', (done) => {
-      database('hosts').select('hostUrl').where({ 'id': 1 })
-        .then(data => {
-          axios.get(data[0].hostUrl)
-            .then(res => {
-              expect((/20[0-9]{1}/).test(res.status)).toBe(true);
-              done();
-            })
-            .catch(e => console.error('10', e));
-        });
-    });
+  //   test('test if "hostUrl" is a valid link in "hosts" table', (done) => {
+  //     database('hosts').select('hostUrl').where({ 'id': 1 })
+  //       .then(data => {
+  //         axios.get(data[0].hostUrl)
+  //           .then(res => {
+  //             expect((/20[0-9]{1}/).test(res.status)).toBe(true);
+  //             done();
+  //           })
+  //           .catch(e => console.error('10', e));
+  //       });
+  //   });
 
-    test('test if "photoUrl" is a valid link in "listings" table', (done) => {
-      database('listings').select('photoUrl').where({ 'id': 1 })
-        .then(data => {
-          axios.get(data[0].photoUrl)
-            .then(res => {
-              expect((/20[0-9]{1}/).test(res.status)).toBe(true);
-              done();
-            })
-            .catch(e => console.error('11', e));
-        });
-    });
-  });
+  //   test('test if "photoUrl" is a valid link in "listings" table', (done) => {
+  //     database('listings').select('photoUrl').where({ 'id': 1 })
+  //       .then(data => {
+  //         axios.get(data[0].photoUrl)
+  //           .then(res => {
+  //             expect((/20[0-9]{1}/).test(res.status)).toBe(true);
+  //             done();
+  //           })
+  //           .catch(e => console.error('11', e));
+  //       });
+  //   });
+  // });
 });

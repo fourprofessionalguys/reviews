@@ -17,14 +17,13 @@ const ImageBox = styled.div`
   position: relative;
   height: 48px;
   width: 48px;
-  border-radius: 10rem;
   margin-right: 1rem;
   display: block;
-`;
+  `;
 
 const CustomImage = styled.img`
-  height: 48px;
-  width: 48px;
+  max-height: 48px;
+  width: auto;
   display: block;
   vertical-align: middle;
   overflow: hidden;

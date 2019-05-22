@@ -1,6 +1,9 @@
 const faker = require('faker');
 const axios = require('axios');
 const _ = require('underscore');
+const fs = require('fs');
+const path = require('path');
+const randomProfile = require('random-profile-generator');
 const UNSPLASH_API_KEY = require('../unsplashApiKey.js');
 
 const randomBoundedInt = function randomBoundedInt(bound) {
@@ -91,8 +94,32 @@ const fetchPhotos = function fetchPhotos(collectionId) {
     });
 }
 
+const buildUserPhotos = function buildUserPhotos() {
+  return new Promise((resolve, reject) => {
+    fs.readdir(path.join(__dirname, '../../', 'images', 'small'), { encoding: 'utf8' }, (error, data) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(Promise.all(data.map(img => `https://s3.amazonaws.com/airbnbcloneuserphotos/${img}`)))
+      }
+    });
+  });
+};
 
-const generateOneListing = function generateOneListing() {
+const buildListingPhotos = function buildListingPhotos() {
+  return new Promise((resolve, reject) => {
+    fs.readdir(path.join(__dirname, '../../', 'images', 'interiors'), { encoding: 'utf8' }, (error, data) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(Promise.all(data.map(img => `https://s3.amazonaws.com/airbnbcloneinteriorphotos/${img}`)))
+      }
+    });
+  });
+};
+
+
+const generateOneListing = function generateOneListing(url) {
   return {
     title: randomListingTitle(),
     description: randomListingDescription(),
@@ -105,7 +132,7 @@ const generateOneListing = function generateOneListing() {
     bedrooms: randomIntInRange(1, 12),
     beds: randomIntInRange(1, 12),
     baths: randomIntInRange(1, 10),
-    photoUrl: faker.image.imageUrl(),
+    photoUrl: url,
   };
 };
 
@@ -119,7 +146,7 @@ const generateOneReview = function generateOneReview() {
 const generateOneUser = function generateOneUser(url) {
   return {
     name: faker.name.firstName(),
-    photoUrl: url,
+    photoUrl: url
   }
 
 };
@@ -138,27 +165,30 @@ const generateOneHost = function generateOneHost(url) {
 };
 
 const buildNListings = function buildNListings(n) {
-  return fetchPhotos(PEOPLE_COLLECTION)
-    .then(urls => {
-      return Promise.all(_.map(_.range(n), (k) => {
-        let host = generateOneHost(randomSelect(urls));
-        let listing = generateOneListing();
-        let numberOfReviews = randomBoundedInt(20);
-        let reviews = [];
-        let users = [];
-        for (let i = 0; i < numberOfReviews; i++) {
-          let user = generateOneUser(urls[i]);
-          reviews.push(generateOneReview());
-          users.push(user);
-        }
-        return {
-          listing,
-          host,
-          reviews,
-          users
-        }
-      }))
-    })
+  return buildUserPhotos()
+    .then(userPhotos => {
+      return buildListingPhotos()
+        .then(listingPhotos => {
+          return Promise.all(_.map(_.range(n), (k) => {
+            let host = generateOneHost(randomSelect(userPhotos));
+            let listing = generateOneListing(randomSelect(listingPhotos));
+            let numberOfReviews = randomBoundedInt(20);
+            let reviews = [];
+            let users = [];
+            for (let i = 0; i < numberOfReviews; i++) {
+              let user = generateOneUser(userPhotos[i]);
+              reviews.push(generateOneReview());
+              users.push(user);
+            }
+            return {
+              listing,
+              host,
+              reviews,
+              users
+            }
+          }));
+        })
+    });
 }
 
 module.exports = buildNListings(100);
