@@ -61,15 +61,15 @@ const Review = ({ review, formatDate }) => {
       <ReviewBox>
         <ViewBox>
           <ImageBox>
-            <CustomImage src={review.photo} alt=""></CustomImage>
+            <CustomImage className="reviewPhoto" src={review.photo} alt=""></CustomImage>
           </ImageBox>
         </ViewBox>
         <ViewBox>
-          <ReviewName>{review.user}</ReviewName>
-          <ReviewDate>{formatDate(review.date)}</ReviewDate>
+          <ReviewName className="reviewUser">{review.user}</ReviewName>
+          <ReviewDate className="reviewDate">{formatDate(review.date)}</ReviewDate>
         </ViewBox>
       </ReviewBox>
-      <ReviewText>{review.text}</ReviewText>
+      <ReviewText className="reviewText">{review.text}</ReviewText>
     </ReviewBox>
   );
 }

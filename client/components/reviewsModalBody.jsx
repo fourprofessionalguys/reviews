@@ -78,7 +78,7 @@ const ReviewsModalBody = ({ reviews, formatDate }) => {
               <ReviewDate>{formatDate(review.date)}</ReviewDate>
             </ViewBox>
           </ReviewBox>
-          <ReviewText>{review.text}</ReviewText>
+          <ReviewText id="modalText">{review.text}</ReviewText>
           <hr />
         </div>
       )}

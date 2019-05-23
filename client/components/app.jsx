@@ -38,6 +38,14 @@ const ReviewTitle = styled.h1`
   margin-bottom: 4rem;
 `;
 
+const MoreReviews = styled.a`
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-writing-mode: horizontal-tb;
+  writing-mode: horizontal-tb;
+  cursor: pointer;
+`;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -96,6 +104,15 @@ class App extends React.Component {
             <ReviewTitle>Reviews</ReviewTitle>
             <ReviewModal id="modal" isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
             <Reviews isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
+            <div className="mt-2">
+              <MoreReviews
+                id="moreReviews"
+                style={{ 'color': '#914669' }}
+                onClick={this.toggleModal}
+              >
+                Read all {this.state.reviews.length} reviews
+              </MoreReviews>
+            </div>
           </div>
         </PageContainer>
       </div>
