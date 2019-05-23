@@ -2,7 +2,7 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://cj:student@localhost/airbnb_clone',
+    connection: 'postgres://cj:student@localhost/airbnb_clone_reviews',
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {
@@ -15,13 +15,13 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: 'postgres://cj:student@localhost/airbnb_clone'
+    connection: 'postgres://cj:student@localhost/airbnb_clone_reviews'
   },
 
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'airbnb_clone',
+      database: 'airbnb_clone_reviews',
       user: 'cj',
       password: 'student'
     },
@@ -37,7 +37,7 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'airbnb_clone',
+      database: 'airbnb_clone_reviews',
       user: 'cj',
       password: 'student'
     },
