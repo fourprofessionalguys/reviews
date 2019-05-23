@@ -74,13 +74,12 @@ class App extends React.Component {
 
   componentDidMount() {
     Axios({
-      url: 'http://localhost:3003/reviews',
-      method: 'POST',
+      url: 'http://localhost:3003/reviews/2',
+      method: 'GET',
       headers: {
         'Accepts': 'application/json',
         'Content-Type': 'application/json'
       },
-      data: JSON.stringify({ listing_id: this.props.listing_id })
     })
       .then(res => res.data)
       .then(data => {
