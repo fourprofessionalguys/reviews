@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import ReviewsModalBody from './reviewsModalBody.jsx';
 
 const ModalInner = styled.div`
-  display: ${props => props.showModal ? "table-cell" : "none"};
+  display: ${props => props.isModalShowing ? "table-cell" : "none"};
   vertical-align: middle;
   background: white;
   position: absolute;
   z-index: 5;
   width: 568px;
-  max-height: 85vh;
+  max-height: 100vh;
     padding: 10px 32px 0px 32px;
   margin: 0 25% 5% 25%;
   overflow: auto;
@@ -41,12 +41,12 @@ const CloseButton = styled.button`
 `;
 
 
-const ReviewModal = ({ showModal, reviews, formatDate, handleShow }) => {
+const ReviewModal = ({ isModalShowing, reviews, formatDate, toggleModal }) => {
 
   return (
-    <ModalInner showModal={showModal}>
+    <ModalInner isModalShowing={isModalShowing}>
       <ModalHeader>
-        <CloseButton onClick={() => handleShow()}>
+        <CloseButton onClick={() => toggleModal()}>
           <SvgButton viewBox=" 0 0 24 24">
             <path d="m23.25 24c-.19 0-.38-.07-.53-.22l-10.72-10.72-10.72 10.72c-.29.29-.77.29-1.06 0s-.29-.77 0-1.06l10.72-10.72-10.72-10.72c-.29-.29-.29-.77 0-1.06s.77-.29 1.06 0l10.72 10.72 10.72-10.72c.29-.29.77-.29 1.06 0s .29.77 0 1.06l-10.72 10.72 10.72 10.72c.29.29.29.77 0 1.06-.15.15-.34.22-.53.22">
             </path>

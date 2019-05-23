@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import Review from './Review.jsx';
-import ReviewModal from './reviewModal.jsx';
 
 const MoreReviews = styled.a`
   font-size: 16px;
@@ -20,11 +19,10 @@ const ReviewColumn = styled.div`
   padding-bottom: 1.75rem;
 `;
 
-const Reviews = ({ reviews, showModal, handleShow, formatDate }) => {
+const Reviews = ({ reviews, toggleModal, formatDate }) => {
   let groups = [reviews.slice(0, 2), reviews.slice(2, 4), reviews.slice(4, 6)];
   return (
     <div>
-      <ReviewModal showModal={showModal} handleShow={handleShow} reviews={reviews} formatDate={formatDate} />
       {groups.map((group, k) =>
         <div className="row" key={k}>
           {group.map((review, i) => (
@@ -36,8 +34,9 @@ const Reviews = ({ reviews, showModal, handleShow, formatDate }) => {
       )}
       <div className="mt-2">
         <MoreReviews
+          id="moreReviews"
           style={{ 'color': '#914669' }}
-          onClick={handleShow}
+          onClick={() => toggleModal()}
         >
           Read all {reviews.length} reviews
           </MoreReviews>

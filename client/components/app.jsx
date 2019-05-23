@@ -1,7 +1,9 @@
 import React from 'react';
 import moment from 'moment';
+import Axios from 'axios';
 import styled, { createGlobalStyle } from 'styled-components';
 import Reviews from './reviews.jsx';
+import ReviewModal from './reviewModal.jsx';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -42,15 +44,15 @@ class App extends React.Component {
 
     this.state = {
       reviews: [],
-      showModal: false
+      isModalShowing: false
     };
 
-    this.handleShow = this.handleShow.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
 
-  handleShow() {
-    this.setState({ showModal: !this.state.showModal });
+  toggleModal() {
+    this.setState({ isModalShowing: !this.state.isModalShowing });
   }
 
 
@@ -63,18 +65,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://localhost:3003/reviews', {
+    Axios({
+      url: 'http://localhost:3003/reviews',
       method: 'POST',
       headers: {
         'Accepts': 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ listing_id: this.props.listing_id })
+      data: JSON.stringify({ listing_id: this.props.listing_id })
     })
-      .then(res => res.json())
+      .then(res => res.data)
       .then(data => {
-        this.setState({
-          reviews: data
+        this.setState(state => {
+          data = this.sortByDate(data)
+          return {
+            reviews: data
+          }
         });
       })
       .catch(console.error);
@@ -84,12 +90,12 @@ class App extends React.Component {
     return (
       <div>
         <GlobalStyle />
-        <Modal showModal={this.state.showModal} onClick={this.handleShow} ></Modal>
         <PageContainer>
           <hr />
           <div className="pt-5">
             <ReviewTitle>Reviews</ReviewTitle>
-            <Reviews showModal={this.state.showModal} handleShow={this.handleShow} reviews={this.sortByDate(this.state.reviews)} formatDate={this.formatDate} />
+            <ReviewModal id="modal" isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
+            <Reviews isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
           </div>
         </PageContainer>
       </div>
