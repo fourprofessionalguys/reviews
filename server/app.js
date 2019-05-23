@@ -6,7 +6,6 @@ const database = require('./db/dbConfig.js')
 
 // Configuration
 const app = express();
-const port = 3003;
 
 // Middleware
 app.use(express.static('public'));
