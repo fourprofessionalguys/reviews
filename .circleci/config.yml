@@ -29,5 +29,5 @@ jobs:
       - run: npm run seed
       
       # run tests
-
+      -rum: npm run test
       
