@@ -30,4 +30,19 @@ jobs:
           command: sudo -u postgres psql -p 5432 -c "alter user testuser with superuser;"
           command: sudo -u postgres psql -p 5432 -c "create database testdb;"
           command: sudo -u postgres psql -p 5432 -c "grant all privileges on database testdb to testuser;"
-      -run: npm run test
+  # test:
+  #   working_directory: ~/repo
+  #   docker:
+  #     - image: circleci/node:12
+  #       environment:
+  #         NODE_ENV: test
+  #         PGHOST: 127.0.0.1
+  #         PGUSER: testuser
+  #     - image: postgres:11.3
+  #       environment:
+  #         POSTGRES_DB: testdb
+  #         POSTGRES_USER: testuser
+  #         POSTGRES_PASSWORD: testpass
+  #   steps:
+  #     - checkout
+  #     - run: npm run test
