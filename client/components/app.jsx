@@ -14,21 +14,28 @@ const GlobalStyle = createGlobalStyle`
   }
   `;
 
-const Modal = styled.div`
-  display: ${props => props.showModal ? "table" : "none"};
+const BodyContainer = styled.div`
+  display: ${props => props.isModalShowing ? "fixed" : "block"};
   position: fixed;
   width: 100%;
   height: 100vh;
-  background: white;
-  opacity: 0.7;
-  z-index: 3;
-  margin-top: -3rem;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left:0;
   padding: 0;
 `;
 
 const PageContainer = styled.div`
   width: 1265px;
   margin: 3rem auto 3rem auto;
+  opacity: ${props => props.isModalShowing ? "0.5" : "1.0"};
+`;
+
+const ModalContainer = styled.div`
+  display: ${props => props.isModalShowing ? "table" : "none"};
+  display: fixed;
 `;
 
 const ReviewTitle = styled.h1`
@@ -52,15 +59,26 @@ class App extends React.Component {
 
     this.state = {
       reviews: [],
-      isModalShowing: false
+      isModalShowing: false,
+      isModalSelected: false
     };
 
     this.toggleModal = this.toggleModal.bind(this);
+    this.selectModal = this.selectModal.bind(this);
   }
 
 
   toggleModal() {
-    this.setState({ isModalShowing: !this.state.isModalShowing });
+    this.setState({
+      isModalShowing: !this.state.isModalShowing,
+      isModalSelected: false
+    });
+  }
+
+  selectModal() {
+    this.setState({
+      isModalSelected: true
+    });
   }
 
 
@@ -95,13 +113,23 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <BodyContainer isModalShowing={this.state.isModalShowing}>
         <GlobalStyle />
-        <PageContainer>
+        <ModalContainer isModalShowing={this.state.isModalShowing}>
+          <ReviewModal
+            id="modal"
+            isModalShowing={this.state.isModalShowing}
+            isModalSelected={this.state.isModalSelected}
+            selectModal={this.selectModal}
+            toggleModal={this.toggleModal}
+            reviews={this.state.reviews}
+            formatDate={this.formatDate}
+          />
+        </ModalContainer>
+        <PageContainer isModalShowing={this.state.isModalShowing} onClick={() => this.toggleModal()}>
           <hr />
           <div className="pt-5">
             <ReviewTitle>Reviews</ReviewTitle>
-            <ReviewModal id="modal" isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
             <Reviews isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
             <div className="mt-2">
               <MoreReviews
@@ -114,7 +142,7 @@ class App extends React.Component {
             </div>
           </div>
         </PageContainer>
-      </div>
+      </BodyContainer>
     );
   }
 }
