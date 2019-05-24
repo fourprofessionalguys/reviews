@@ -20,8 +20,27 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-      # seed database
-      - run: npm run seed
-      # run tests
-      - run: npm run test
-      
+  tests:
+    docker:
+      - image: circleci/node:12
+      - image: postgres:11
+    steps:
+      - checkout
+      - run:
+          name: Seed
+          command: npm run seed
+      - run:
+          name: Test
+          command: npm run test
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
