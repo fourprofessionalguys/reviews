@@ -3,16 +3,15 @@ jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:8.16.0-jessie
         environment:
           NODE_ENV: test
           PGHOST: 127.0.0.1
-          PGUSER: testuser
-      - image: postgres:11.3
+          PGUSER: root
+      - image: postgres:11.3-alpine
         environment:
-          POSTGRES_DB: testdb
-          POSTGRES_USER: testuser
-          POSTGRES_PASSWORD: testpass
+          POSTGRES_DB: circle-test_test
+          POSTGRES_USER: root
     steps:
       - checkout
 
@@ -24,12 +23,12 @@ jobs:
             - node_modules
           key: 
             - dependency-cache-{{ checksum "package.json" }}
-      - run:
-          name: Setup postgresql user
-          command: sudo -u postgres psql -p 5432 -c "create user testuser with password 'testpass';"
-          command: sudo -u postgres psql -p 5432 -c "alter user testuser with superuser;"
-          command: sudo -u postgres psql -p 5432 -c "create database testdb;"
-          command: sudo -u postgres psql -p 5432 -c "grant all privileges on database testdb to testuser;"
+      # - run:
+      #     name: Setup postgresql user
+      #     command: sudo -u postgres psql -p 5432 -c "create user testuser with password 'testpass';"
+      #     command: sudo -u postgres psql -p 5432 -c "alter user testuser with superuser;"
+      #     command: sudo -u postgres psql -p 5432 -c "create database circle-test_test;"
+      #     command: sudo -u postgres psql -p 5432 -c "grant all privileges on database circle-test_test to testuser;"
   # test:
   #   working_directory: ~/repo
   #   docker:
