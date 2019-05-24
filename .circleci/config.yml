@@ -1,10 +1,18 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/reviews
+    working_directory: ~/repo
     docker:
       - image: circleci/node:12
+        environment:
+            PGHOST: 127.0.0.1:3003
+            PGUSER: cj
+            NODE_ENV: test
       - image: postgres:11
+        environment:
+          POSTGRES_DB: airbnb_clone_reviews
+          POSTGRES_PASSWORD: "student"
+          POSTGRES_USER: cj
    steps:
       - checkout
       # update npm
