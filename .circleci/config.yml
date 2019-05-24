@@ -1,37 +1,27 @@
 version: 2
-
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build
-
 jobs:
   build:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:12
         environment:
             PGHOST: 127.0.0.1:3003
             PGUSER: cj
             NODE_ENV: test
-      - image: postgres:11
+      - image: postgres:11.3
         environment:
           POSTGRES_DB: airbnb_clone_reviews
           POSTGRES_PASSWORD: "student"
           POSTGRES_USER: cj
     steps:
       - checkout
-      # update npm
-      - run:
-          name: Update npm
-          command: 'sudo npm install -g npm@latest'
       # download and cache dependencies
       - restore_cache:
           key:
             - dependency-cache-{{ checksum "package.json" }}
       - run: npm install
       - save_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
+          key: 
+            - dependency-cache-{{ checksum "package.json" }}
