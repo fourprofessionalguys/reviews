@@ -1,9 +1,16 @@
 version: 2
-jobs:
+
+workflows:
+  version: 2
   build:
+    jobs:
+      - test
+
+jobs:
+  test:
     working_directory: ~/repo
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:7.10
         environment:
             PGHOST: 127.0.0.1:3003
             PGUSER: cj
@@ -28,27 +35,5 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-  tests:
-    docker:
-      - image: circleci/node:12
-      - image: postgres:11
-    steps:
-      - checkout
-      - run:
-          name: Seed
-          command: npm run seed
-      - run:
-          name: Test
-          command: npm run test
-
-workflows:
-  version: 2
-  build_and_test:
-    jobs:
-      - build
-      - test:
-          requires:
-            - build
-          filters:
-            branches:
-              only: master
+      - run: npm run seed
+      - run: npm run test
