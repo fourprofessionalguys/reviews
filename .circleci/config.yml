@@ -20,7 +20,7 @@ jobs:
           POSTGRES_DB: airbnb_clone_reviews
           POSTGRES_PASSWORD: "student"
           POSTGRES_USER: cj
-   steps:
+    steps:
       - checkout
       # update npm
       - run:
