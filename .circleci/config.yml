@@ -4,10 +4,10 @@ workflows:
   version: 2
   build:
     jobs:
-      - test
+      - build
 
 jobs:
-  test:
+  build:
     working_directory: ~/repo
     docker:
       - image: circleci/node:7.10
@@ -35,4 +35,3 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - node_modules
-      - run: npm run test
