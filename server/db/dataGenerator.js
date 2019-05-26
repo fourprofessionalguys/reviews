@@ -93,6 +93,60 @@ const buildListingPhotos = function buildListingPhotos() {
 };
 
 
+const USER_PHOTOS = Promise.all([
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_0bDm6kFC2Tc.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_CUJTifrLCLs.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_T4pyizC6G1k.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_V2sJMCDdslA.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_XU-OwxtV4Ko.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_Y6N_w94x8ik.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_ZxG76-UM6w0.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225__t_EMqrNzi0.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_aLT-JhaNqIU.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_g3OqMfRfo_8.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_j7Z-XUHHN40.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_m663zRzRe40.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_myggK4JQdLI.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_oYFv-_JKsVk.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_qDs5alqjJAk.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_ufWjkFmTNXo.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_xZjiUR7SWIQ.jpeg',
+  'https://s3.amazonaws.com/airbnbcloneuserphotos/225x225_yki80w96VZ0.jpeg'
+]);
+
+const LISTING_PHOTOS = Promise.all([
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/6viJObrmnBw.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/AQl-J19ocWE.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/AX-hGV70sd0.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/AhiUnolb7cg.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/C_dRtsnBOQA.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/F68K6buOR2s.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/FqqiAvJejto.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/GdCIsUD2-yA.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/GmEUEyISvd8.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/HmREZuu4XuY.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/I4ecJKp3eFw.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/L0BaowhFe4c.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/QGehbt2b6iQ.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/Rwb3barsoH8.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/TD2DKbVP284.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/UXFJ-6Zj27M.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/Wv65tpVIdDg.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/YFQGWKW33Ck.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/_AK42TQRyCw.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/b37mDyPzdJM.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/dAAk8Aqd_-I.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/dJrIcUp4kcA.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/gREquCUXQLI.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/hAh4Unn50gk.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/kOYh8C_xLUQ.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/kVBzVaVa7Q0.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/nK0d-oyOyhc.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/r5pPYI6lEpA.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/zFGBEikZoRg.jpg',
+  'https://s3.amazonaws.com/airbnbcloneinteriorphotos/zfgVn46-xJw.jpg'
+]);
+
 const generateOneListing = function generateOneListing(url) {
   return {
     title: randomListingTitle(),
@@ -139,9 +193,9 @@ const generateOneHost = function generateOneHost(url) {
 };
 
 const buildNListings = function buildNListings(n) {
-  return buildUserPhotos()
+  return USER_PHOTOS
     .then(userPhotos => {
-      return buildListingPhotos()
+      return LISTING_PHOTOS
         .then(listingPhotos => {
           return Promise.all(_.map(_.range(n), (k) => {
             let host = generateOneHost(randomSelect(userPhotos));
