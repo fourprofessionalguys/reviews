@@ -4,26 +4,26 @@ jobs:
     working_directory: ~/repo
     docker:
       - image: circleci/node:8.16.0-jessie
-        # environment:
-        #   NODE_ENV: test
-        #   PGHOST: 127.0.0.1:3003
-        #   PGUSER: root
-      # - image: postgres:11.3-alpine
-      #   environment:
-      #     POSTGRES_DB: circle-test_test
-      #     POSTGRES_USER: root
+        environment:
+          NODE_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+      - image: postgres:11.3-alpine
+        environment:
+          POSTGRES_DB: circle-test_test
+          POSTGRES_USER: root
     steps:
       - checkout
-      - run: npm install
-      - run: npm test
-      # - restore_cache:
-      #     key: dependency-cache-{{ checksum "package.json" }}
       # - run: npm install
-      # - save_cache:
-      #     paths:
-      #       - node_modules
-      #     key: 
-      #       - dependency-cache-{{ checksum "package.json" }}
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: 
+            - dependency-cache-{{ checksum "package.json" }}
+      - run: npm test
       # - run:
       #     name: Setup postgresql user
       #     command: sudo -u postgres psql -p 5432 -c "create user testuser with password 'testpass';"
