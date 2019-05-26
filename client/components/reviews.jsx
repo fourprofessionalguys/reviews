@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Review from './Review.jsx';
+import Review from './review.jsx';
 
 const ReviewColumn = styled.div`
   display: flex;
