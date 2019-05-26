@@ -9,7 +9,7 @@ describe('Reviews', () => {
 
   it('format Date formats a date properly', () => {
     const wrapper = shallow(<Review review={{ 'date': '2019-05-03', 'text': 'someting', 'user': 'me', photo: 'https://unsplash.com/photos/G6ntxf-QoSI' }} formatDate={(date) => String(moment(new Date(date)))} />);
-    expect(wrapper.find('.reviewDate').text()).toEqual('Thu May 02 2019 18:00:00 GMT-0600');
+    expect(wrapper.find('.reviewDate').text()).toEqual(String(moment(new Date('2019-05-03'))));
   });
 
   it('displays text, user, and photo properly', () => {
