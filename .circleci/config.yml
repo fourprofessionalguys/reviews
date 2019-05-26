@@ -23,8 +23,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: 
-            - dependency-cache-{{ checksum "package.json" }}
+          key: dependency-cache-{{ checksum "package.json" }}
       - run: npm test
       # - run:
       #     name: Setup postgresql user
