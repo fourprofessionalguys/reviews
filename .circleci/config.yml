@@ -24,6 +24,7 @@ jobs:
           paths:
             - node_modules
           key: dependency-cache-{{ checksum "package.json" }}
+      - run: npm seed
       - run: npm test
       # - run:
       #     name: Setup postgresql user
