@@ -14,15 +14,16 @@ jobs:
           POSTGRES_USER: root
     steps:
       - checkout
-
-      - restore_cache:
-          key: dependency-cache-{{ checksum "package.json" }}
       - run: npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: 
-            - dependency-cache-{{ checksum "package.json" }}
+      - run: npm test
+      # - restore_cache:
+      #     key: dependency-cache-{{ checksum "package.json" }}
+      # - run: npm install
+      # - save_cache:
+      #     paths:
+      #       - node_modules
+      #     key: 
+      #       - dependency-cache-{{ checksum "package.json" }}
       # - run:
       #     name: Setup postgresql user
       #     command: sudo -u postgres psql -p 5432 -c "create user testuser with password 'testpass';"
