@@ -3,8 +3,6 @@ const axios = require('axios');
 const _ = require('underscore');
 const fs = require('fs');
 const path = require('path');
-const randomProfile = require('random-profile-generator');
-const UNSPLASH_API_KEY = require('../unsplashApiKey.js');
 
 const randomBoundedInt = function randomBoundedInt(bound) {
   return Math.floor(Math.random() * (bound)) + 1;
@@ -69,30 +67,6 @@ const generateRandomReview = function generateRandomReview() {
 
 const HOUSES_COLLECTION = 3488741;
 const PEOPLE_COLLECTION = 138794;
-
-const fetchPhotos = function fetchPhotos(collectionId) {
-  return axios({
-    url: `https://api.unsplash.com/collections/${collectionId}/photos`,
-    params: {
-      'page': 1,
-      'per_page': '100',
-      'client_id': UNSPLASH_API_KEY
-    },
-    method: 'GET'
-  })
-    .then(res => res.data.map(item => `https://api.unsplash.com/photos/${item.id}?client_id=${UNSPLASH_API_KEY}`))
-    .then(urls => {
-      return Promise.all(urls.map(url => {
-        return axios({
-          method: 'GET',
-          url: url
-        })
-          .then(data => {
-            return data.data.urls.small;
-          });
-      }))
-    });
-}
 
 const buildUserPhotos = function buildUserPhotos() {
   return new Promise((resolve, reject) => {

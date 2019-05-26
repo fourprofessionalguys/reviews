@@ -35,6 +35,9 @@ const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const SvgBox = styled.div`
@@ -50,7 +53,6 @@ const SvgButton = styled.svg`
   height: 16px;
   display: block;
   fill: rgb(118, 118, 118);
-
 `;
 
 
