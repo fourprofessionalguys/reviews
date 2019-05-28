@@ -16,9 +16,9 @@ const GlobalStyle = createGlobalStyle`
 
 const BodyContainer = styled.div`
   display: ${props => props.isModalShowing ? "fixed" : "block"};
-  position: fixed;
+  position: ${props => props.isModalShowing ? "fixed" : "inherit"};
   width: 100%;
-  height: 100vh;
+  min-height: 100%;
   overflow: hidden;
   top: 0;
   right: 0;
@@ -28,13 +28,12 @@ const BodyContainer = styled.div`
 `;
 
 const PageContainer = styled.div`
-  width: 1265px;
+  width: 90%;
   margin: 3rem auto 3rem auto;
   opacity: ${props => props.isModalShowing ? "0.5" : "1.0"};
 `;
 
 const ModalContainer = styled.div`
-  display: ${props => props.isModalShowing ? "table" : "none"};
   display: fixed;
 `;
 
@@ -51,6 +50,17 @@ const MoreReviews = styled.a`
   -webkit-writing-mode: horizontal-tb;
   writing-mode: horizontal-tb;
   cursor: pointer;
+`;
+
+const PaddingTop = styled.div`
+  padding-top: 3rem;
+`;
+
+const ModalButtonContainer = styled.div`
+  margin-top: 1rem;
+  @media screen and (max-width: 744px) {
+    display: none;
+  }
 `;
 
 class App extends React.Component {
@@ -128,10 +138,10 @@ class App extends React.Component {
         </ModalContainer>
         <PageContainer isModalShowing={this.state.isModalShowing} onClick={() => this.toggleModal()}>
           <hr />
-          <div className="pt-5">
+          <PaddingTop>
             <ReviewTitle>Reviews</ReviewTitle>
             <Reviews isModalShowing={this.state.isModalShowing} toggleModal={this.toggleModal} reviews={this.state.reviews} formatDate={this.formatDate} />
-            <div className="mt-2">
+            <ModalButtonContainer>
               <MoreReviews
                 id="moreReviews"
                 style={{ 'color': '#914669' }}
@@ -139,8 +149,8 @@ class App extends React.Component {
               >
                 Read all {this.state.reviews.length} reviews
               </MoreReviews>
-            </div>
-          </div>
+            </ModalButtonContainer>
+          </PaddingTop>
         </PageContainer>
       </BodyContainer>
     );

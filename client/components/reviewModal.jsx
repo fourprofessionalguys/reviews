@@ -11,7 +11,8 @@ const ModalInner = styled.div`
   width: 568px;
   max-height: 95vh;
   padding: 10px 24px 0px 24px;
-  margin: 4rem 0 0 27rem;
+
+  margin: 4rem 0 0 25%;
   overflow: auto;
   box-shadow: 0 0.01rem 0.8rem rgba(118,118,118,0.3);
 `;

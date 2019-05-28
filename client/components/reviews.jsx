@@ -8,7 +8,12 @@ const ReviewColumn = styled.div`
   align-items: left;
   min-height: 10rem;
   max-height: 40rem;
-  padding-bottom: 1.75rem;
+  padding: 0 0 1.75rem 1.5rem;
+  flex-wrap: wrap;
+  width: 100%;
+  @media screen and (min-width: 740px) {
+    width: 50%;
+  }
 `;
 
 const Reviews = ({ reviews, formatDate }) => {
@@ -18,7 +23,7 @@ const Reviews = ({ reviews, formatDate }) => {
       {groups.map((group, k) =>
         <div className="row" key={k}>
           {group.map((review, i) => (
-            <ReviewColumn key={i + k} className="col-6">
+            <ReviewColumn key={i + k}>
               <Review review={review} formatDate={formatDate} />
             </ReviewColumn>
           ))}

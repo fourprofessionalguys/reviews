@@ -4,12 +4,11 @@ import styled from 'styled-components';
 
 const ReviewBox = styled.div`
   padding: 14px 18px 0 0;
+  width: 100%;
   line-height: 1.43;
 `;
 
 const ViewBox = styled.div`
-  display: table-cell;
-  vertical-align: middle;
   padding-bottom: 0.65rem;
 `;
 
@@ -46,12 +45,17 @@ const ReviewDate = styled.div`
   margin: 0;
 `;
 
+const FlexBox = styled.div`
+  display: inline-block;
+  width: 100%;
+`;
+
 const ReviewText = styled.div`
   font-size: 16px;
   font-weight: 300;
   line-height: 1.375rem;
-  word-wrap: break-word;
   padding: 0 2rem 0 0;
+  overflow-wrap: break-word;
 `;
 
 
@@ -69,7 +73,9 @@ const Review = ({ review, formatDate }) => {
           <ReviewDate className="reviewDate">{formatDate(review.date)}</ReviewDate>
         </ViewBox>
       </ReviewBox>
-      <ReviewText className="reviewText">{review.text}</ReviewText>
+      <FlexBox>
+        <ReviewText className="reviewText">{review.text}</ReviewText>
+      </FlexBox>
     </ReviewBox>
   );
 }
