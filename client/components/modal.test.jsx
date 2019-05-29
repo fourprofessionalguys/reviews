@@ -9,7 +9,7 @@ import ReviewsModalBody from './reviewsModalBody.jsx';
 describe('Modal', () => {
 
   it('modal renders on load', () => {
-    const wrapper = shallow(<App listing_id={2} />);
+    const wrapper = shallow(<ReviewApp listing_id={2} />);
 
     expect(wrapper.find('#modal').length).toEqual(1);
   });
@@ -21,7 +21,7 @@ describe('Modal', () => {
   });
 
   it('renders text of modal when modal is open', () => {
-    const wrapper = mount(<App listing_id={2} />);
+    const wrapper = mount(<ReviewApp listing_id={2} />);
     const reviewsModalBody = shallow(<ReviewsModalBody reviews={[{ 'text': 'someting' }]} formatDate={(date) => String(moment(new Date(date)).fromNow())}></ReviewsModalBody>);
     wrapper.find(MoreReviews).simulate('click');
 
