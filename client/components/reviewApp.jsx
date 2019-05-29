@@ -63,7 +63,7 @@ const ModalButtonContainer = styled.div`
   }
 `;
 
-class App extends React.Component {
+class ReviewApp extends React.Component {
   constructor(props) {
     super(props);
 
@@ -157,4 +157,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default ReviewApp;

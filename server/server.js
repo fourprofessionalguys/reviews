@@ -1,5 +1,5 @@
 const app = require('./app.js');
-const port = 3003;
+const port = 3004;
 
 // Server Setup
 app.listen(port, () => {
