@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const ReviewBox = styled.div`
-  &&&&& {
+  &&& {
     padding: 14px 18px 0 0;
     width: 100%;
     line-height: 1.43;
@@ -11,13 +11,13 @@ const ReviewBox = styled.div`
 `;
 
 const ViewBox = styled.div`
-  &&&&& {
+  &&& {
     padding-bottom: 0.65rem;
   }
 `;
 
 const ImageBox = styled.div`
-  &&&&& {
+  &&& {
     position: relative;
     height: 48px;
     width: 48px;
@@ -27,7 +27,7 @@ const ImageBox = styled.div`
   `;
 
 const CustomImage = styled.img`
-  &&&&& {
+  &&& {
     max-height: 48px;
     width: auto;
     display: block;
@@ -40,7 +40,7 @@ const CustomImage = styled.img`
 `;
 
 const ReviewName = styled.span`
-  &&&&& {
+  &&& {
   
     font-size: 16px;
     font-weight: 500;
@@ -50,7 +50,7 @@ const ReviewName = styled.span`
 `;
 
 const ReviewDate = styled.div`
-  &&&&& {
+  &&& {
   
     font-size: 14px;
     font-weight: 300;
@@ -60,14 +60,14 @@ const ReviewDate = styled.div`
 `;
 
 const FlexBox = styled.div`
-  &&&&& { 
+  &&& { 
     display: inline-block;
     width: 100%;
   }
 `;
 
 const ReviewText = styled.div`
-  &&&&& { 
+  &&& { 
     font-size: 16px;
     font-weight: 300;
     line-height: 1.375rem;

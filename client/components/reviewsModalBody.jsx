@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const ReviewsHeader = styled.h1`
-  &&&&& { 
+  &&& { 
     font-weight: 700;
     font-size: 24px;
     line-height: 40px;
@@ -11,7 +11,7 @@ const ReviewsHeader = styled.h1`
 `;
 
 const ImageBox = styled.div`
-  &&&&& { 
+  &&& { 
     position: relative;
     height: 48px;
     width: 48px;
@@ -22,7 +22,7 @@ const ImageBox = styled.div`
 `;
 
 const CustomImage = styled.img`
-  &&&&& { 
+  &&& { 
     height: 48px;
     width: 48px;
     display: block;
@@ -35,14 +35,14 @@ const CustomImage = styled.img`
 `;
 
 const ReviewBox = styled.div`
-  &&&&& { 
+  &&& { 
     padding: 14px 18px 0 0;
     line-height: 1.43;
   }
 `;
 
 const ViewBox = styled.div`
-  &&&&& { 
+  &&& { 
     display: table-cell;
     vertical-align: middle;
     padding-bottom: 0.65rem;
@@ -50,7 +50,7 @@ const ViewBox = styled.div`
 `;
 
 const ReviewName = styled.span`
-  &&&&& { 
+  &&& { 
     font-size: 16px;
     font-weight: 500;
     line-height: 1.375rem;
@@ -59,7 +59,7 @@ const ReviewName = styled.span`
 `;
 
 const ReviewDate = styled.div`
-  &&&&& { 
+  &&& { 
     font-size: 14px;
     font-weight: 300;
     line-height: 1.2857142857142858rem;
@@ -68,7 +68,7 @@ const ReviewDate = styled.div`
 `;
 
 const ReviewText = styled.div`
-  &&&&& { 
+  &&& { 
     font-size: 16px;
     font-weight: 300;
     line-height: 1.375rem;

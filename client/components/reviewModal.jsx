@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ReviewsModalBody from './reviewsModalBody.jsx';
 
 const ModalInner = styled.div`
-  &&&&& { 
+  &&& { 
     display: ${props => props.isModalShowing ? "table-cell" : "none"};
     vertical-align: middle;
     background: white;
@@ -20,14 +20,14 @@ const ModalInner = styled.div`
 `;
 
 const ModalHeader = styled.div`
-  &&&&& { 
+  &&& { 
     font-size: 14px;
     margin: 1rem 0 1rem 0;
   }
 `;
 
 const ModalBody = styled.div`
-  &&&&& { 
+  &&& { 
     width: 504;
     padding-bottom: 3rem;
     margin: auto;
@@ -35,7 +35,7 @@ const ModalBody = styled.div`
 `;
 
 const CloseButton = styled.button`
-  &&&&& { 
+  &&& { 
     background: white;
     border: 1px solid white;
     padding: 20px;
@@ -50,7 +50,7 @@ const CloseButton = styled.button`
 `;
 
 const SvgBox = styled.div`
-  &&&&& { 
+  &&& { 
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -59,7 +59,7 @@ const SvgBox = styled.div`
 `;
 
 const SvgButton = styled.svg`
-  &&&&& { 
+  &&& { 
     margin: 7px;
     width: 16px;
     height: 16px;

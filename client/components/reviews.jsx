@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Review from './review.jsx';
 
 const ReviewColumn = styled.div`
-  &&&&& { 
+  &&& { 
     display: flex;
     flex-direction: column;
     align-items: left;

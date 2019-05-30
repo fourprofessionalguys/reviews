@@ -6,7 +6,7 @@ import Reviews from './reviews.jsx';
 import ReviewModal from './reviewModal.jsx';
 
 const GlobalStyle = createGlobalStyle`
-  &&&&& body {
+  &&& body {
     font-family: 'Roboto', Helvetica Neue, sans-serif;
     font-size: 14px;
     color: #484848;
@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
   `;
 
 const BodyContainer = styled.div`
-  &&&&& {
+  &&& {
     display: block;
     width: 100%;
     min-height: 100%;
@@ -29,7 +29,7 @@ const BodyContainer = styled.div`
 `;
 
 const PageContainer = styled.div`
-  &&&&& {
+  &&& {
     width: 90%;
     margin: 3rem auto 3rem auto;
     opacity: ${props => props.isModalShowing ? "0.5" : "1.0"};
@@ -37,13 +37,13 @@ const PageContainer = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  &&&&& { 
+  &&& { 
   display: fixed;
   }
 `;
 
 const ReviewTitle = styled.h1`
-  &&&&& {
+  &&& {
     font-weight: 700;
     font-size: 36px;
     line-height: 40px;
@@ -52,7 +52,7 @@ const ReviewTitle = styled.h1`
 `;
 
 const MoreReviews = styled.a`
-  &&&&& {
+  &&& {
     font-size: 16px;
     font-weight: 500;
     -webkit-writing-mode: horizontal-tb;
@@ -62,13 +62,13 @@ const MoreReviews = styled.a`
 `;
 
 const PaddingTop = styled.div`
-  &&&&& {
+  &&& {
     padding-top: 3rem;
   }
 `;
 
 const ModalButtonContainer = styled.div`
-  &&&&& {
+  &&& {
     margin-top: 1rem;
     @media screen and (max-width: 744px) {
       display: none;
