@@ -1,6 +1,7 @@
 // Imports
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const database = require('./db/dbConfig.js')
 
@@ -10,6 +11,7 @@ const app = express();
 // Middleware
 app.use(express.static('public'));
 app.use(bodyParser.json());
+app.use(cors());
 
 // Routes
 app.get('/reviews/:listingId', (req, res) => {
@@ -32,7 +34,11 @@ app.get('/reviews/:listingId', (req, res) => {
                 photo: usersData[i].photoUrl
               }
             });
-            res.status(201).json(data);
+            res.status(201).set({
+              'Access-Control-Allow-Origin': 'http://localhost:3000',
+              'Access-Control-Allow-Credentials': 'true',
+              'Content-Type': 'application/json'
+            }).json(data);
           })
       });
   } else {

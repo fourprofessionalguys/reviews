@@ -3,16 +3,18 @@ import styled from 'styled-components';
 import Review from './review.jsx';
 
 const ReviewColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  min-height: 10rem;
-  max-height: 40rem;
-  padding: 0 0 1.75rem 1.5rem;
-  flex-wrap: wrap;
-  width: 100%;
-  @media screen and (min-width: 740px) {
-    width: 50%;
+  &&&&& { 
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    min-height: 10rem;
+    max-height: 40rem;
+    padding: 0 0 1.75rem 1.5rem;
+    flex-wrap: wrap;
+    width: 100%;
+    @media (min-width: 740px) {
+      width: 50%;
+    }
   }
 `;
 
