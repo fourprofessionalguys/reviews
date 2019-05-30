@@ -28,6 +28,7 @@ const ImageBox = styled.div`
 
 const CustomImage = styled.img`
   &&& {
+    float: left;
     max-height: 48px;
     width: auto;
     display: block;
@@ -79,20 +80,20 @@ const ReviewText = styled.div`
 
 const Review = ({ review, formatDate }) => {
   return (
-    <ReviewBox id="rreviews_eviewBox">
-      <ReviewBox id="reviews_innerReviewBox">
-        <ViewBox id="reviews_viewBox">
-          <ImageBox id="reviews_imageBox">
-            <CustomImage id="reviews_customImage" className="reviewPhoto" src={review.photo} alt=""></CustomImage>
+    <ReviewBox>
+      <ReviewBox>
+        <ViewBox>
+          <ImageBox>
+            <CustomImage className="reviewPhoto" src={review.photo} alt=""></CustomImage>
           </ImageBox>
         </ViewBox>
-        <ViewBox id="reviews_viewBox2">
-          <ReviewName id="reviews_reviewName" className="reviewUser">{review.user}</ReviewName>
-          <ReviewDate id="reviews_reviewDate" className="reviewDate">{formatDate(review.date)}</ReviewDate>
+        <ViewBox>
+          <ReviewName className="reviewUser">{review.user}</ReviewName>
+          <ReviewDate className="reviewDate">{formatDate(review.date)}</ReviewDate>
         </ViewBox>
       </ReviewBox>
-      <FlexBox id="reviews_flexbox">
-        <ReviewText id="reviews_reviewText" className="reviewText">{review.text}</ReviewText>
+      <FlexBox>
+        <ReviewText className="reviewText">{review.text}</ReviewText>
       </FlexBox>
     </ReviewBox>
   );

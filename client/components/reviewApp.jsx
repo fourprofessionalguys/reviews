@@ -1,18 +1,9 @@
 import React from 'react';
 import moment from 'moment';
 import Axios from 'axios';
-import styled, { createGlobalStyle, ThemeProvider } from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
 import Reviews from './reviews.jsx';
 import ReviewModal from './reviewModal.jsx';
-
-const GlobalStyle = createGlobalStyle`
-  &&& body {
-    font-family: 'Roboto', Helvetica Neue, sans-serif;
-    font-size: 14px;
-    color: #484848;
-    line-height: 1.43;
-  }
-  `;
 
 const BodyContainer = styled.div`
   &&& {
@@ -142,7 +133,6 @@ class ReviewApp extends React.Component {
     return (
       <ThemeProvider theme={theme}>
         <BodyContainer isModalShowing={this.state.isModalShowing}>
-          <GlobalStyle />
           <ModalContainer isModalShowing={this.state.isModalShowing}>
             <ReviewModal
               id="modal"
