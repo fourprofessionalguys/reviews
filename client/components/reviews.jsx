@@ -8,16 +8,14 @@ const Reviews = ({ reviews, formatDate }) => {
       <div id="rReviews">
         {groups.map((group, k) =>
           <div className="row" key={k}>
-            <div className="rContainer">
-              {group.map((review, i) => (
-                <div
-                  className="rReviewColumn"
-                  key={i + k}
-                >
-                  <Review review={review} formatDate={formatDate} />
-                </div>
-              ))}
-            </div>
+            {group.map((review, i) => (
+              <div
+                className="rReviewColumn"
+                key={i + k}
+              >
+                <Review review={review} formatDate={formatDate} />
+              </div>
+            ))}
           </div>
         )}
       </div>

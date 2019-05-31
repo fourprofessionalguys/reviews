@@ -29,7 +29,7 @@ describe('Reviews', () => {
       { 'date': '2019-05-03', 'text': 'someting', 'user': 'me', photo: 'https://unsplash.com/photos/G6ntxf-QoSI' }
     ];
     const wrapper = mount(<Reviews reviews={reviews} formatDate={(date) => String(moment(new Date(date)))} />);
-    expect(wrapper.find('.rReviewColumn').children().length).toEqual(6);
+    expect(wrapper.find('.row').children().length).toEqual(6);
   });
 
 });

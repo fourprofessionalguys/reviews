@@ -119,12 +119,6 @@
   
   #rReviews {
     
-    .rContainer {
-      display:flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    
     .rReviewColumn { 
       display: flex;
       flex-direction: column;
@@ -136,7 +130,7 @@
       width: 100%;
 
       @media (min-width: 740px) {
-        width: 49%;
+        width: 50%;
       }
     }
   }
