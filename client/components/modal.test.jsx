@@ -1,15 +1,15 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import moment from 'moment';
-import ReviewApp from './reviewApp.jsx';
+import App from './app.jsx';
 import ReviewModal from './reviewModal.jsx';
-import MoreReviews from './reviewApp.jsx';
+import MoreReviews from './app.jsx';
 import ReviewsModalBody from './reviewsModalBody.jsx';
 
 describe('Modal', () => {
 
   it('modal renders on load', () => {
-    const wrapper = shallow(<ReviewApp listing_id={2} />);
+    const wrapper = shallow(<App listing_id={2} />);
 
     expect(wrapper.find('#modal').length).toEqual(1);
   });
@@ -21,7 +21,7 @@ describe('Modal', () => {
   });
 
   it('renders text of modal when modal is open', () => {
-    const wrapper = mount(<ReviewApp listing_id={2} />);
+    const wrapper = mount(<App listing_id={2} />);
     const reviewsModalBody = shallow(<ReviewsModalBody reviews={[{ 'text': 'someting' }]} formatDate={(date) => String(moment(new Date(date)).fromNow())}></ReviewsModalBody>);
     wrapper.find(MoreReviews).simulate('click');
 

@@ -1,0 +1,100 @@
+.Reviews {
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  background: white;
+  line-height: 1.43;
+  color: #484848;
+}
+.Reviews #rApp .rBodyContainer {
+  display: block;
+  min-height: 100%;
+  overflow: hidden;
+  padding: 0;
+}
+.Reviews #rApp .rPageContainer {
+  width: 90%;
+  margin: 3rem auto 3rem auto;
+}
+.Reviews #rApp .rModalContainer {
+  display: fixed;
+}
+.Reviews #rApp .rReviewTitle {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  margin-bottom: 4rem;
+  color: #484848;
+}
+.Reviews #rApp .rMoreReviews {
+  font-size: 16px;
+  font-weight: 500;
+  -webkit-writing-mode: horizontal-tb;
+  writing-mode: horizontal-tb;
+  cursor: pointer;
+}
+.Reviews #rApp .rPaddingTop {
+  padding-top: 3rem;
+}
+.Reviews #rApp .rModalButtonContainer {
+  margin-top: 1rem;
+}
+@media screen and (max-width: 744px) {
+  .Reviews #rApp .rModalButtonContainer {
+    display: none;
+  }
+}
+.Reviews #rReview .rReviewBox {
+  padding: 14px 18px 18px 0;
+  width: 100%;
+  line-height: 1.43;
+}
+.Reviews #rReview .rViewBox {
+  display: table-cell;
+  vertical-align: middle;
+  padding-bottom: 0.65rem;
+}
+.Reviews #rReview .rImageBox {
+  position: relative;
+  display: table-cell;
+  vertical-align: middle;
+  height: 48px;
+  width: 48px;
+  margin-right: 1rem;
+  display: block;
+}
+.Reviews #rReview .rCustomImage {
+  max-height: 48px;
+  width: auto;
+  display: table-cell;
+  vertical-align: middle;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid white;
+  cursor: pointer;
+}
+.Reviews #rReview .rReviewName {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.375rem;
+  margin: 0;
+}
+.Reviews #rReview .rReviewDate {
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.2857142857rem;
+  margin: 0;
+}
+.Reviews #rReview .rFlexBox {
+  display: inline-block;
+  width: 100%;
+}
+.Reviews #rReview .rReviewText {
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.375rem;
+  padding: 0 2rem 0 0;
+  overflow-wrap: break-word;
+}
+
+/*# sourceMappingURL=main.css.map */
