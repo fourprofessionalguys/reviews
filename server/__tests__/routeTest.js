@@ -20,7 +20,7 @@ describe('test paths', () => {
   });
 
   test('route /reviews should respond with 201 and reviews array', (done) => {
-    request(app).get('/reviews/2').then(response => {
+    request(app).get('/api/listings/reviews/2').then(response => {
       let reviewProps = Object.keys(response.body[0]);
       expect(response.statusCode).toEqual(201);
       expect(Array.isArray(response.body)).toEqual(true);
@@ -30,14 +30,14 @@ describe('test paths', () => {
   });
 
   test('route /reviews should respond with status code 400 when listingId is not a number for get to /reviews/:listingId', (done) => {
-    request(app).get('/reviews/a1').then(response => {
+    request(app).get('/api/listings/reviews/a1').then(response => {
       expect(response.statusCode).toEqual(400);
       done();
     });
   });
 
   test('route /reviews should respond with status code 400 when listingId is not between 1 and 100 for get to /reviews/:listingId', (done) => {
-    request(app).get('/reviews/1000').then(response => {
+    request(app).get('/api/listings/reviews/1000').then(response => {
       expect(response.statusCode).toEqual(400);
       done();
     });

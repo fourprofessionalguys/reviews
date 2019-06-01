@@ -1,9 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import moment from 'moment';
-import App from './app.jsx';
+import App from './App.jsx';
 import ReviewModal from './reviewModal.jsx';
-import MoreReviews from './app.jsx';
+import MoreReviews from './App.jsx';
 import ReviewsModalBody from './reviewsModalBody.jsx';
 
 describe('Modal', () => {
