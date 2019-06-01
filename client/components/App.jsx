@@ -1,7 +1,6 @@
 import React from 'react';
 import moment from 'moment';
 import Axios from 'axios';
-import style from './../main.scss'
 import styled from 'styled-components';
 import Reviews from './reviews.jsx';
 import ReviewModal from './reviewModal.jsx';
