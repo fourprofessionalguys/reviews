@@ -2,7 +2,12 @@ module.exports = {
 
   development: {
     client: 'pg',
-    connection: 'postgres://cj:student@localhost/airbnb_clone_reviews',
+    connection: {
+      user: 'cdag22',
+      host: 'reviews.cs9w0pu3iftx.us-east-1.rds.amazonaws.com',
+      password: 'cdw3aws3#',
+      database: 'reviewsdb'
+    },
     useNullAsDefault: true,
     charset: 'utf8',
     migrations: {

@@ -51,7 +51,7 @@
   },
   "scripts": {
     "test": "jest",
-    "start": "nodemon server/server.js",
+    "start": "node server/server.js",
     "react-dev": "webpack -d --watch",
     "sass-dev": "sass --watch client:public",
     "seed": "knex migrate:rollback; knex migrate:latest; knex seed:run",
