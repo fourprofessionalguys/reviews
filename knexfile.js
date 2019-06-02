@@ -4,9 +4,9 @@ module.exports = {
     client: 'pg',
     connection: {
       user: 'cdag22',
-      host: 'reviews.cs9w0pu3iftx.us-east-1.rds.amazonaws.com',
+      host: 'airbnbclone.cs9w0pu3iftx.us-east-1.rds.amazonaws.com',
       password: 'cdw3aws3#',
-      database: 'reviewsdb'
+      database: 'reviews'
     },
     useNullAsDefault: true,
     charset: 'utf8',
@@ -20,7 +20,12 @@ module.exports = {
 
   test: {
     client: 'pg',
-    connection: 'postgres://cj:student@localhost/airbnb_clone_reviews',
+    connection: {
+      user: 'cdag22',
+      host: 'airbnbclone.cs9w0pu3iftx.us-east-1.rds.amazonaws.com',
+      password: 'cdw3aws3#',
+      database: 'reviews'
+    },
     migrations: {
       directory: __dirname + '/server/db/migrations'
     },
@@ -32,9 +37,10 @@ module.exports = {
   staging: {
     client: 'postgresql',
     connection: {
-      database: 'airbnb_clone_reviews',
-      user: 'cj',
-      password: 'student'
+      user: 'cdag22',
+      host: 'airbnbclone.cs9w0pu3iftx.us-east-1.rds.amazonaws.com',
+      password: 'cdw3aws3#',
+      database: 'reviews'
     },
     pool: {
       min: 2,
@@ -48,9 +54,10 @@ module.exports = {
   production: {
     client: 'postgresql',
     connection: {
-      database: 'airbnb_clone_reviews',
-      user: 'cj',
-      password: 'student'
+      user: 'cdag22',
+      host: 'airbnbclone.cs9w0pu3iftx.us-east-1.rds.amazonaws.com',
+      password: 'cdw3aws3#',
+      database: 'reviews'
     },
     pool: {
       min: 2,
