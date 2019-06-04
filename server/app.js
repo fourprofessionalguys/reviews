@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 // Routes
-app.get('/api/listings/reviews/:id', (req, res) => {
+app.get('/reviews/:id', (req, res) => {
   let listing_id = req.params.id;
   if ((/(^[1-9]{1}[0-9]{0,1}$)|^100$/).test(listing_id)) {
     database.from('reviews')
